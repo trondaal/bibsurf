@@ -1,0 +1,11 @@
+.link {
+       stroke: #ccc;
+ }
+ 
+.gnode{
+    cursor: pointer;
+}
+ 
+.gnode text {
+     font: 10px sans-serif;
+}

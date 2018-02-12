@@ -1,0 +1,729 @@
+/*Color theme */
+
+
+.linkstyle {color:#b3b3b3}
+.Wcolor {color:#0039e6}
+.Ecolor {color:#2e50b8}
+.Mcolor {color:#5e75ba}
+.lightcolor {color:#b3b3b3}
+
+.framed{
+    border-style: solid;
+	border-color: #CCCCCC;
+	border-radius: 3px;
+    border-width: thin;
+    padding: 5px;
+    padding-left: 40px;
+}
+
+.audiobookicon{
+    background-image:url('../images/audio.jpg');
+    background-repeat:no-repeat;
+    background-position: 5px 5px;
+    background-size: 20px 20px;
+}
+
+.bookicon {
+    background-image:url('../images/book.jpg');
+    background-repeat:no-repeat;
+    background-position: 5px 5px;
+    background-size: 20px 20px;
+}
+
+.picturebookicon {
+    background-image:url('../images/book.jpg');
+    background-repeat:no-repeat;
+    background-position: 5px 5px;
+    background-size: 20px 20px;
+}
+
+.musicicon {
+    background-image:url('../images/music.jpg');
+    background-repeat:no-repeat;
+    background-position: 5px 5px;
+    background-size: 20px 20px;
+}
+.videoicon{
+    background-image:url('../images/film.jpg');
+    background-repeat:no-repeat;
+    background-position: 5px 5px;
+    background-size: 20px 20px;
+}
+
+html, body{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: ;
+}
+
+body {
+    font-size: 10px;
+}
+
+hr {
+  border-top-color: #cccccc !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+#maincontainer{
+    display: flex;
+    flex-flow: column;
+    height: 95%;
+    margin: 25px;
+    margin-bottom: 50px;
+    overflow: hidden;
+}
+
+#headercontainer{
+    display: flex;
+    flex: 0 0 auto;
+    flex-flow: row;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 10px;
+}
+
+#searchboxelements{
+    display: flex;
+    flex: 0 0 auto;
+    flex-flow: row;
+    justify-content:space-between;
+    margin: 10px;
+    padding: 10px;
+    /*box-shadow:2px 2px 5px #486AA2;*/
+    background-color: #e5e5e5;
+}
+
+#resultcontainer{
+    display: flex;
+    flex: 1 1 auto;
+    flex-flow: row;
+    background-color:white;
+    height: auto;
+    /*box-shadow:2px 2px 5px #486AA2;*/
+}
+
+#homepage{
+  display: flex;
+  flex: 0 0 auto;
+  flex-flow: row;
+  margin: 10px;
+  padding: 10px;
+  height: auto;
+}
+
+.homepagebackground {
+  display: flex;
+  flex-flow: row;
+  padding: 10px;
+  min-width: 768px;
+  background: url(../images/background.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: fill;
+  width: fill;
+}
+
+.homepageform {
+  min-width: 700px;
+  width: 1000px;
+  margin: 30px;
+  padding: 20px;
+  height: fit-content;
+  background-color: white;
+}
+
+.queryboxfieldset{
+    text-align: center; /** center the divs **/
+    vertical-align:top;
+    margin: 2px;
+    border-image-source: none;
+    border-image-slice: none;
+    border-image-width: none;
+    border-image-outset: none;
+    border-image-repeat: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #cccccc;
+    padding:0 10px 10px 10px; /* To give a bit of padding on the left and right */
+}
+
+.categorygroup {
+    position: relative;
+    border-image-source: none;
+    border-image-slice: none;
+    border-image-width: none;
+    border-image-outset: none;
+    border-image-repeat: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #cccccc;
+    padding:0 10px 10px 10px;
+    margin-bottom: 5px;
+}
+
+#querybox{
+    flex-grow: 1;
+    margin: auto;
+}
+
+#entitybox{
+    margin: auto;
+}
+
+#collectionbox{
+    margin: auto;
+}
+
+#rankingbox{
+    margin: auto;
+}
+
+#queryboxflex{
+    display: flex;
+    flex-flow: row;
+    justify-content:space-between;
+}
+
+#queryboxinput{
+    flex-grow: 1;
+
+}
+
+#left{
+    flex-basis: 250px;
+    height: auto;
+    padding-top: 0;
+
+}
+#middle{
+    flex-grow:2;
+    height: auto;
+    flex: 1 1 auto;
+}
+
+.removequerytermbutton{
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+    text-align: right;
+}
+
+.queryterm{
+    display: inline-block;
+    background-color: lightblue;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.querytermbackground{
+    background-image: url(../images/button_cancel.png); /* 16px x 16px */
+    background-color: transparent; /* make the button transparent */
+    background-repeat: no-repeat;  /* make the background image appear only once */
+    height: 16px;           /* make this the size of your image */
+    padding-left: 16px;     /* make text start to the right of the image */
+    vertical-align: middle; /* align the text vertically centered */
+}
+
+input[type="text"] {
+    font-size:14px;
+    width: 95%;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+.box{
+    width:200px;
+    min-width:100px;
+    background-color:white;
+    padding:10px;
+}
+
+.ruler{
+    margin-left:100px;
+    margin-right:100px;
+}
+
+.headertitle{
+    font-size:30px;
+    font-weight:bold;
+    color:#093975;
+    text-shadow:1px 1px 6px #888;
+    font-family: "Verdana";
+}
+
+.headersubtitle {
+	font-size: 16px;
+	color: #093975;
+	text-shadow: 1px 1px 2px #888;
+	font-family: "Verdana";
+	padding-bottom:0;
+	margin-bottom:0;
+	margin-left: 0px;
+	padding-left: 10px;
+}
+
+.headersubsubtitle {
+	font-size: 14px;
+  width: inherit;
+	color: #093975;
+	font-family: "Verdana";
+	padding-bottom:0;
+	margin-top:5px;
+	margin-bottom: 2px;
+	margin-left: 0px;
+	padding-left: 5px;
+  border-bottom: none;
+}
+
+.WorkUnit, .ExpressionUnit, .ManifestationUnit{
+
+}
+
+.checkboxdiv{
+	font-size: 13px;
+	color: #093975;
+	font-family: "Verdana";
+  display: block;
+  padding-bottom: 1px;
+}
+
+.checkboxdiv > label{
+  font-weight: normal;
+  margin-bottom: 0;
+}
+
+.checkboxdiv > input{
+  display: inline-block;
+}
+
+.checkboxdiv:first-of-type{
+    padding-top: 0px;
+}
+
+/*Name list properties*/
+
+.name:not(:first-child)::before{
+    content: "; ";
+}
+
+.adapter::after{
+    content: " (adapter)";
+}
+
+.composer::after{
+    content: " (composer)";
+}
+
+.interviewee::after{
+    content: " (interviewee)";
+}
+
+.interviewer::after{
+    content: " (interviewer)";
+}
+
+.lyricist::after{
+    content: " (lyricist)";
+}
+
+.screenwriter::after{
+    content: " (screenwriter)";
+}
+
+.director::after{
+    content: " (director)";
+}
+
+.actor::after{
+    content: " (actor)";
+}
+
+.author::after{
+    content: " (author)";
+}
+
+.compiler::after{
+    content: " (editor)";
+}
+
+.artist::after{
+    content: " (artist)";
+}
+.translator::after{
+    content: " (translator)";
+}
+
+.narrator::after{
+    content: " (narrator)";
+}
+
+.abridger::after{
+    content: " (abridger)";
+}
+
+.contributor::after{
+    content: " (contributor)";
+}
+
+.conductor::after{
+    content: " (conductor)";
+}
+
+.performer::after{
+    content: " (performer)";
+}
+
+.contentType{
+    display: inline-block;
+}
+
+
+/*Work display styles*/
+
+
+
+.ExpressionUnit, .WorkUnit{
+
+    border-style: solid;
+	border-color: #d8dcf1;
+	border-radius: 3px;
+    border-width: thin;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+
+.WorkHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.WorkDescription{
+    font-family:"Verdana";
+	font-size: 13px;
+	font-weight: bold;
+	margin-bottom: 0px;
+	padding-top: 10px;
+	padding-right: 20px;
+	padding-left: 10px;
+}
+
+.WorkDescription > .formOfWork{
+
+}
+
+.WorkHeader > .links{
+    min-width: 100px;
+}
+
+.WorkHeader .link{
+    display: inline-block;
+    text-align: right;
+    margin-left: 5px;
+}
+
+.ui-tabs-nav{
+    font-size: 12px;
+    border-color: #CCCCCC;
+    background-image: none;
+}
+
+.ui-tabs{
+    border-color: #CCCCCC;
+    margin-left: 20px;
+}
+
+.ui-tabs-panel{
+    border-color: #CCCCCC;
+    padding-top: 0px;
+}
+
+.ExpressionList > .Expression:not(:first-child){
+    margin-top: 15px;
+}
+
+.ExpressionList > .Expression > .names{
+    font-family:"Verdana";
+	font-size: 13px;
+	font-weight: bold;
+	margin-left: -10px;
+
+
+}
+.ExpressionList > .Expression > .names {
+    padding-left: 10px;
+}
+
+.ExpressionList .Manifestation{
+    font-family:"Verdana";
+	font-size: 12px;
+	padding-bottom: 0px;
+    margin-top: 4px;
+    margin-right: 20px;
+}
+
+.ExpressionUnit .ManifestationList{
+    margin-left: -20px;
+}
+
+.relatedwork{
+    font-family:"Verdana";
+	font-size: 12px;
+	color:#5e75ba;
+	margin-left: 20px;
+}
+
+/* Expression display styles */
+
+.ExpressionHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.ExpressionHeader > .links{
+    min-width: 100px;
+}
+
+.ExpressionHeader .link{
+    display: inline-block;
+    text-align: right;
+    margin-left: 5px;
+}
+
+.ExpressionDescription{
+  font-family:"Verdana";
+	font-size: 13px;
+	color: #005ce6;
+	font-weight: bold;
+	margin-bottom: 10px;
+	padding-top: 10px;
+	padding-right: 20px;
+	padding-left: 10px;
+}
+
+.ExpressionUnit .Manifestation{
+    /*margin-left: 20px;*/
+}
+
+.ExpressionLine > .names::before{
+    content: ' / ';
+}
+
+.ExpressionLine > .names::after{
+    margin-left: -4px;
+    content: '. ';
+}
+
+.ExpressionLine > .formofwork::before{
+    content: ' [';
+}
+
+.ExpressionLine > .languageofexpression::before{
+    content: ' - ';
+}
+
+.ExpressionLine > .contenttype::before{
+    content: ' - ';
+}
+
+.ExpressionLine > .contenttype::after{
+    content: ']';
+}
+
+/*Manifestation display text styles */
+
+.rightbox{
+    min-width: 60px;
+    max-width: 60px;
+    margin-left: 50px;
+}
+
+.ManifestationUnit{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
+
+.ManifestationUnit .Manifestation{
+    /*styles for the Manifestation - some duplication because this is reused for manifestation listings in works and express*/
+
+    font-family:"Verdana";
+	font-size: 12px;
+    padding-bottom: 5px;
+    flex-grow: 1;
+}
+
+.ManifestationUnit .titleProper{
+    color:#0039e6;
+}
+
+.ManifestationUnit .carrierandmedia{
+    color:#b3b3b3
+}
+
+.ManifestationLine{
+    font-family:"Verdana";
+	font-size: 12px;
+}
+
+.ManifestationLine:first-child {
+    font-weight: bold;
+    padding-bottom: 3px;
+}
+
+.Manifestation{
+    margin-bottom: 5px;
+}
+
+.link{
+    font-family:"Verdana";
+	font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 2px;
+    cursor: pointer;
+    border-style: dashed;
+    border-width: thin;
+    text-align: center;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+
+.publisher{
+   	margin-right: 5px;
+
+}
+
+.moreorlessdescriptionbutton{
+    cursor: pointer;
+    text-align: left;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.moreorlessdescriptionlink{
+    cursor: pointer;
+    text-align: left;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.moreorlessdescriptionbutton:hover, .moreorlessdescriptionlink:hover, .link:hover{
+    font-weight: bold;
+    color:#cccccc;
+}
+
+.moreorless{
+    font-weight: bold;
+    color: #999966;
+    cursor: pointer;
+    text-align: right;
+    font-size: 12px;
+}
+
+.crumb{
+    display: inline-block;
+    background-color: lightblue;
+    padding: 0px;
+    border-radius: 0px;
+    margin: 0px;
+}
+
+/*ul {
+margin-left: 20px;
+}*/
+
+.moreManifestation{
+    padding-top: 10px;
+}
+
+.contentheading {
+    padding-left:0px;
+}
+.contentlisting {
+    margin: 0px;
+}
+
+.contentlisting ul {
+    padding-left: 0px;
+}
+
+.contentlisting li {
+    padding-bottom: 4px;
+}
+
+.relatedwork{
+    margin-left: -20px;
+}
+
+.noresult{
+    font-family:"Verdana";
+	font-size: 12px;
+}
+
+.legendbutton{
+  position: absolute;
+  top: -0.2em;
+  right: 15px;
+  line-height:1.2em;
+}
+
+.secondline{
+  /*border-style: solid;
+  border-color: #d8dcf1;
+  border-radius: 3px;
+  border-width: thin;
+  padding: 5px;
+  margin-left: 10px;*/
+}
+
+.expressionWell{
+  margin-top: 3px !important;
+  margin-bottom: 0px !important;
+  padding-bottom: 0px !important;
+  padding-top: 5px !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  padding-left: 13px !important;
+  background-color: #e5e5e5 !important;
+}
+
+.expressionTab{
+  border-bottom: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  margin-left: 2px !important;
+  background-color: #f5f5f5 !important;
+}
+
+.expressionPanel{
+  margin-bottom: 0 !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-top: 0 !important;
+}
+
+.activeTab{
+    background-color: white !important;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.categorycrumbs{
+  margin-right: 5px !important;
+  margin-bottom: 4px !important;
+}
+
+.paddingLeft{
+  padding-left: 16px !important;
+}
