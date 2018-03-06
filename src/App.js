@@ -417,7 +417,7 @@ class App extends Component {
   //this.getData(this.state.params, this.state.initCategorygroups, this.state.categorycrumbs, this.state.queryboxcrumbs, this.state.filterOption, this.state.filterTree, this.state.andorgroups);
   getData(newParams, newInitCategoryGroups, newCategoryCrumbs, newQueryboxCrumbs, newFilterOption, newFilterTree, newAndorGroups) {
     let querydata = this.querydata(newCategoryCrumbs, newFilterOption);
-    let baseUrl = "http://dijon.idi.ntnu.no//exist/rest/db/bibsurfbeta/xql/search.xquery";
+    let baseUrl = "http://dif03.idi.ntnu.no:8080/exist/rest/db/bibsurfbeta/xql/search.xquery";
     let query = newQueryboxCrumbs.join(" ");
     let querytype = newParams.querytype;
     let displaytype = newParams.displaytype;
@@ -535,8 +535,7 @@ class App extends Component {
       return (
         <Dropdownbox key={param}
           param={param} value={this.state.params[param]}
-          handleChangeOption={this.handleChangeOption}
-        />
+          handleChangeOption={this.handleChangeOption} />
       );
     })
   };

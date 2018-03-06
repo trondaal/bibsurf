@@ -68,8 +68,7 @@ class Resultlist extends Component {
               hasRelatedWorks={this.hasRelatedWorks}
               getManifestationsArray={this.getManifestationsArray}
               index={i}
-              toggleData={this.toggleData}
-            />
+              toggleData={this.toggleData} />
           )
         })
       }
@@ -78,8 +77,7 @@ class Resultlist extends Component {
           return (
             <Manifestation key={unit.about} unit={unit}
               manifestation={true}
-              findRole={this.findRole}
-            />
+              findRole={this.findRole} />
           )
         })
       }
@@ -91,8 +89,7 @@ class Resultlist extends Component {
               getManifestationsArray={this.getManifestationsArray}
               findRole={this.findRole}
               index={i}
-              toggleData={this.toggleData}
-            />
+              toggleData={this.toggleData} />
           )
         })
       }

@@ -20,8 +20,7 @@ class Results extends Component {
             removeCategoryCrumb={this.props.removeCategoryCrumb}
             categorycrumbs={this.props.categorycrumbs}
             categorygroup={categorygroup}
-            filterOption={this.props.filterOption}
-          />
+            filterOption={this.props.filterOption} />
         );
       });
     }
@@ -31,7 +30,7 @@ class Results extends Component {
     if (Object.keys(this.props.categorycrumbs).length > 0) {
       return (
         <Button bsSize="small" onClick={() => this.props.removeAllCategoryCrumbs()}>
-          <img src={require('../images/cross.png')} alt={"icon"} width="8"/>
+          <img src={require("../images/cross.png")} alt={"icon"} width="8"/>
           {"Clear all filters"}
         </Button>
       )
