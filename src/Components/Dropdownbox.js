@@ -43,7 +43,7 @@ class Dropdownbox extends Component {
 
   render() {
     return (
-      <div>
+      <div id={this.props.param}>
         <fieldset className="queryboxfieldset">
           <legend className="headersubsubtitle">{dropdownboxes[this.props.param].title}:</legend>
           <FormControl bsSize="sm" componentClass="select" value={this.props.value} onChange={this.handleChange}>

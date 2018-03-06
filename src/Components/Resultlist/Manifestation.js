@@ -66,7 +66,13 @@ class Manifestation extends Component {
       editionStatement += unit.extent + " ";
     }
     if (unit.dimensions) {
-      editionStatement += unit.dimensions;
+      editionStatement += unit.dimensions + " ";
+    }
+    if (unit.identifierForTheManifestation){
+      let identifierelements = unit.identifierForTheManifestation.split(":");
+      let idtype = identifierelements[1].toUpperCase();
+      let idvalue = identifierelements[2];
+      editionStatement += idtype + " " + idvalue;
     }
     let moreorless;
     if (this.state.moreorlessdescriptionlink) {

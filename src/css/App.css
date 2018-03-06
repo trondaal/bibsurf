@@ -165,6 +165,10 @@ hr {
     margin-bottom: 5px;
 }
 
+#subcollection{
+  display : none;
+}
+
 #querybox{
     flex-grow: 1;
     margin: auto;
@@ -175,7 +179,7 @@ hr {
 }
 
 #collectionbox{
-    margin: auto;
+  margin: auto;
 }
 
 #rankingbox{
