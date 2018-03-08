@@ -20,7 +20,7 @@ class Manifestation extends Component {
     moreorlessdescriptionlink = !moreorlessdescriptionlink;
 
     if(this.state.contents.length === 0) {
-      let url = "http://dif03.idi.ntnu.no:8080/exist/rest/db/bibsurfbeta/xql/contents.xquery";
+      let url = "http://dijon.idi.ntnu.no/exist/rest/db/bibsurfbeta/xql/contents.xquery";
       axios.get(url, {
                 params: {
                   manifestationid: this.props.unit.about
