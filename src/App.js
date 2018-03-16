@@ -477,6 +477,7 @@ class App extends Component {
           initCategorygroups = categorygroups;
         }
         if (url !== null) {
+          console.log(url)
           axios.get(url).then(responseNext => {
             if (responseNext !== null) {
               let resultsNext = responseNext.data
@@ -512,6 +513,7 @@ class App extends Component {
   }
 
   getNextResults() {
+    console.log("Get next is called!");
     let resultsUpdate = this.state.results.concat(this.state.resultsNext);
     axios.get(this.state.url).then(responseNext => {
       if (responseNext !== null) {
