@@ -444,6 +444,8 @@ class App extends Component {
     .then(response => {
       let data = response["data"];
       let results = data["results"];
+      let sessionid = data["sessionid"];
+      console.log(sessionid);
       let url = null;
       if (data["next"] !== undefined) {
         url = data["next"];
