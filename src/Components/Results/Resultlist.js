@@ -17,13 +17,25 @@ class Resultlist extends Component {
   }
 
   hasRelatedWorks(unit) {
-    for (var i = 0; i < relationList.length; i++) {
+    /*for (var i = 0; i < relationList.length; i++) {
       let relation = unit[relationList[i]];
       if (relation) {
         return true;
       }
     }
-    return false;
+    return false;*/
+      let relation;
+      relation = unit['related'];
+      //console.log(relation);
+      if (relation === undefined){
+          return false;
+      }else if (relation === null) {
+          return true;
+      }else if (unit.related){
+          return true;
+      }else{
+          return false;
+      }
   }
 
   getManifestationsArray(manifestationOfExpression) {
@@ -47,6 +59,7 @@ class Resultlist extends Component {
 
   //set active tab and when to open/close tab
   toggleData(i, tabClicked, activeTab, open, index) {
+    //console.log(tabClicked);
     if (tabClicked === activeTab || (activeTab === -1 && i === 0)) {
       this.props.toggleData(index, !open, tabClicked)
     } else {

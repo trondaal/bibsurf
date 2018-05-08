@@ -27,6 +27,7 @@ class Manifestation extends Component {
                 }
               })
       .then(response => {
+        //alert("ajax call")
       let contents = response.data;
       if (!Array.isArray(contents)) {
         contents = [contents]

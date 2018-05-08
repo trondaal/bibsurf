@@ -5,6 +5,7 @@ import Titles from './attributes/Titles';
 import RelatedWorks from './attributes/RelatedWorks';
 
 class Work extends Component {
+
   capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }

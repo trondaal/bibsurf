@@ -122,7 +122,7 @@ class App extends Component {
   }
 
   removeCrumbInCategorygroup(obj, group, crumb) {
-    let newObj = obj
+    let newObj = obj;
     newObj[group].splice(newObj[group].indexOf(crumb), 1);
     if (newObj[group].length === 0) {
       delete newObj[group];
@@ -199,12 +199,34 @@ class App extends Component {
     this.setState({ categorygroups });
   }
 
-  //change the active tab in expressions and works display
-  toggleData(index, open, activeTab) {
-    let results = this.state.results;
-    results[index].open = open;
-    results[index].activeTab = activeTab;
-    this.setState({results});
+    //change the active tab in an expression or work display identified by index
+    toggleData(index, open, activeTab) {
+        let results = this.state.results;
+        results[index].open = open;
+        results[index].activeTab = activeTab;
+        if (activeTab === 'Related works' && results[index].related === null) {
+            console.log(activeTab, ' ', index, ' ', results[index].about, results[index].related);
+            let url = 'http://dijon.idi.ntnu.no//exist/rest/db/bibsurfbeta/xql/related.xquery';
+            let id = results[index].about;
+            axios.get(url, {
+                params: {
+                    id: id
+                }})
+                .then(response => {
+                    let related = response.data;
+                    results[index].related = related;
+                    console.log(results[index])
+                    this.setState({results});
+
+                })
+                .catch((error) => {
+                    console.log(error);
+                    this.setState({firstSearch: false, emptyquery: 'Error'})
+                });
+        }else{
+            this.setState({results});
+        }
+
   }
 
   //helperfunctions to getData()

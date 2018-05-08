@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import uuid from 'uuid/v4';
 import {relationList} from '../../../utils/constants'
+import Titles from './Titles';
 
 class RelatedWorks extends Component {
   getSafe(fn) {
@@ -12,41 +13,36 @@ class RelatedWorks extends Component {
   }
 
   getRelationText(text) {
-    let newText = text;
-    newText = newText.replace(/([A-Z])/g, ' $1').toLowerCase();
+    let newText = text.replace(/([A-Z])/g, ' $1').toLowerCase();
     return newText.charAt(0).toUpperCase() + newText.slice(1) + ": ";
   }
 
+
   render() {
-    let relatedworks;
-    let unit = this.props.unit.workExpressed;
-    if(this.props.work){
-      unit = this.props.unit;
-    }
-    let hasRelatedWorks = this.props.hasRelatedWorks(unit);
-    if (hasRelatedWorks) {
-      relationList.forEach(relation => {
-        if (unit[relation]) {
-          let thisrelatedworks = unit[relation].map(item => {
-            return (
-              <li key={uuid()}>
-                {this.getRelationText(relation) + item}
-              </li>
-            );
-          })
-          relatedworks =
-          <div>
-            {relatedworks}
-            {thisrelatedworks}
-          </div>;
-        }
-      })
-    }
-    return (
-      <ul className="contentlisting relatedwork">
-        {relatedworks}
-      </ul>
-    )
+    let related = Object.keys(this.props.unit.related).map(relation => {
+        return (<div key={uuid()}>
+                    <div>{this.getRelationText(relation)}</div>
+                    <ul className="contentlisting relatedwork">{
+                        this.props.unit.related[relation].map(work => {
+                            return(
+                            <li key={uuid()}>
+                            <span className="WorkDescription">
+                                <span className="Wcolor">
+                                    <span className="titleOfTheWork">{work.titleOfWork + " / "}</span>
+                                    <Titles unit={work} work={true} />
+                                    <span className="lightcolor">{" ["}
+                                        <span className="formOfWork">{work.formOfWork}</span>
+                                        {"] "}
+                                    </span>
+                                </span>
+                            </span>
+                            </li>);
+                })}
+            </ul>
+        </div>)
+    });
+    console.log(related);
+    return (<div>{related}</div>);
   }
 }
 
