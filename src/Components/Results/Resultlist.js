@@ -1,10 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import Expression from '../Resultlist/Expression';
 import Manifestation from '../Resultlist/Manifestation';
 import Work from '../Resultlist/Work';
 import uuid from 'uuid/v4';
 import {relationList, roleList} from '../../utils/constants'
+import PropTypes from 'prop-types';
 
 class Resultlist extends Component {
   constructor(props) {

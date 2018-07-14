@@ -1,9 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component} from 'react';
 import {Button} from 'react-bootstrap';
 import Categorygroup from './Results/Categorygroup';
 import Resultlist from './Results/Resultlist';
 import {filterOptions} from '../utils/constants'
 import uuid from 'uuid/v4';
+import PropTypes from 'prop-types';
 
 class Results extends Component {
 

@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import {Button, FormControl} from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 class Querybox extends Component {
   constructor(props) {

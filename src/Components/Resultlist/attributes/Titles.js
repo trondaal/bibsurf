@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import uuid from 'uuid/v4';
+import PropTypes from 'prop-types';
 
 const listRoles =  ['actor', 'artist', 'author', 'editor', 'composer',
   'contributor', 'director', 'interviewee', 'interviewer', 'lyricist',

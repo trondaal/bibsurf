@@ -1,7 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import {Button} from 'react-bootstrap'
 import uuid from 'uuid/v4';
 import {customTitle} from '../../utils/helperFunctions';
+import PropTypes from 'prop-types';
 
 
 class Categorygroup extends Component {

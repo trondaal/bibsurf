@@ -1,8 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import {Well, Panel, Button, Collapse} from 'react-bootstrap';
 import Titles from './attributes/Titles';
 import RelatedWorks from './attributes/RelatedWorks';
 import uuid from 'uuid/v4';
+import PropTypes from 'prop-types';
 
 class Expression extends Component {
   render() {

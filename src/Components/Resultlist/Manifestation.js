@@ -1,7 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import Titles from './attributes/Titles';
 import axios from 'axios';
 import uuid from 'uuid/v4';
+import PropTypes from 'prop-types';
 
 class Manifestation extends Component {
   constructor(props) {

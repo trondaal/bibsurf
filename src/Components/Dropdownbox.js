@@ -1,6 +1,7 @@
-import React, { Component , PropTypes } from 'react';
+import React, { Component } from 'react';
 import {FormControl} from 'react-bootstrap'
 import {dropdownboxes} from '../utils/constants';
+import PropTypes from 'prop-types';
 
 class Dropdownbox extends Component {
   constructor(props) {

@@ -1,7 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import uuid from 'uuid/v4';
 import {relationList} from '../../../utils/constants'
 import Titles from './Titles';
+import PropTypes from 'prop-types';
 
 class RelatedWorks extends Component {
   getSafe(fn) {
