@@ -104,8 +104,8 @@ class Results extends Component {
         <div id="middle" className="box">
           <Resultlist displaytype={this.props.displaytype}
             results={this.props.results}
+            resultsize = {this.props.resultsize}
             getNextResults={this.props.getNextResults}
-            url={this.props.url}
             emptyquery={this.props.emptyquery}
             toggleData={this.props.toggleData}
           />
@@ -126,7 +126,6 @@ Results.propTypes = {
   displaytype: PropTypes.string.isRequired,
   results: PropTypes.array.isRequired,
   getNextResults: PropTypes.func.isRequired,
-  url: PropTypes.string.isRequired,
   emptyquery: PropTypes.string.isRequired,
   listCategories: PropTypes.array.isRequired,
   listCategorygroups: PropTypes.array.isRequired,

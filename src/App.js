@@ -16,20 +16,20 @@ class App extends Component {
     super(props);
 
     this.state = {
-      firstSearch: true,
-      params: {querytype: 'all', displaytype: 'works', rankingtype: 'default', subcollection: ''},
-      categorygroups: this.createEmptyCategorygroups(categorygroupList),
-      initCategorygroups: [],
-      categorycrumbs: {},
-      queryboxcrumbs: [],
-      results: [],
-      resultsNext: [],
-      url: '',
-      emptyquery: '',
-      filterOption: 'and',
-      filterTree: false,
-      andorgroups: []
-    };
+          firstSearch: true,
+          params: {querytype: 'all', displaytype: 'works', rankingtype: 'default', subcollection: ''},
+          categorygroups: App.createEmptyCategorygroups(categorygroupList),
+          initCategorygroups: [],
+          categorycrumbs: {},
+          queryboxcrumbs: [],
+          results: [],
+          resultsize: 0,
+          nexturl: '',
+          emptyquery: '',
+          filterOption: 'and',
+          filterTree: false,
+          andorgroups: []
+      };
 
     this.handleChangeOption = this.handleChangeOption.bind(this);
     this.handleEnterPressed = this.handleEnterPressed.bind(this);
@@ -55,7 +55,7 @@ class App extends Component {
     this.getData(params, [], {}, this.state.queryboxcrumbs, this.state.filterOption, this.state.filterTree, []);
   }
 
-  createEmptyCategorygroups(array) {
+  static createEmptyCategorygroups(array) {
     return array.map(categorygroup => {
       return {group: categorygroup, categories: [], isExpanded: false, hideCheckboxes: true};
     });
@@ -102,26 +102,26 @@ class App extends Component {
     queryboxcrumbs.splice(queryboxcrumbs.indexOf(crumb), 1);
     if (queryboxcrumbs.length === 0) {
       this.setState({queryboxcrumbs, categorycrumbs: {}, andorgroups: [],
-        categorygroups: this.createEmptyCategorygroups(categorygroupList),
+        categorygroups: App.createEmptyCategorygroups(categorygroupList),
         results: [], url: '', resultsNext: '', emptyquery: 'Empty query'})
     } else {
       this.getData(this.state.params, [], {}, queryboxcrumbs, this.state.filterOption, this.state.filterTree, []);
     }
   }
 
-  addCrumbToCategorygroup(obj, group, crumb) {
-    let newObj = obj;
-    if (newObj[group]) {
-      if (newObj[group].indexOf(crumb) === -1) {
-        newObj[group].push(crumb);
-      }
-    } else {
-      newObj[group] = [crumb];
-    }
-    return newObj;
+    addCrumbToCategorygroup(obj, group, crumb) {
+        let newObj = obj;
+        if (newObj[group]) {
+          if (newObj[group].indexOf(crumb) === -1) {
+            newObj[group].push(crumb);
+          }
+        } else {
+          newObj[group] = [crumb];
+        }
+        return newObj;
   }
 
-  removeCrumbInCategorygroup(obj, group, crumb) {
+    removeCrumbInCategorygroup(obj, group, crumb) {
     let newObj = obj;
     newObj[group].splice(newObj[group].indexOf(crumb), 1);
     if (newObj[group].length === 0) {
@@ -155,7 +155,7 @@ class App extends Component {
     let categorycrumbs = {};
     categorycrumbs[group] = categorycrumbsgroup;
     categorycrumbs[group].forEach(crumb => {
-    })
+    });
     this.getData(this.state.params, this.state.initCategorygroups, categorycrumbs, this.state.queryboxcrumbs, this.state.filterOption, this.state.filterTree, this.state.andorgroups);
   }
 
@@ -199,33 +199,32 @@ class App extends Component {
     this.setState({ categorygroups });
   }
 
-    //change the active tab in an expression or work display identified by index
-    toggleData(index, open, activeTab) {
-        let results = this.state.results;
-        results[index].open = open;
-        results[index].activeTab = activeTab;
-        if (activeTab === 'Related works' && results[index].related === null) {
-            console.log(activeTab, ' ', index, ' ', results[index].about, results[index].related);
-            let url = 'http://dijon.idi.ntnu.no//exist/rest/db/bibsurfbeta/xql/related.xquery';
-            let id = results[index].about;
-            axios.get(url, {
-                params: {
-                    id: id
-                }})
-                .then(response => {
-                    let related = response.data;
-                    results[index].related = related;
-                    console.log(results[index])
-                    this.setState({results});
+  //change the active tab in an expression or work display identified by index
+  toggleData(index, open, activeTab) {
+      let results = this.state.results;
+      results[index].open = open;
+      results[index].activeTab = activeTab;
+      if (activeTab === 'Related works' && results[index].related === null) {
+          console.log(activeTab, ' ', index, ' ', results[index].about, results[index].related);
+          let url = 'http://dijon.idi.ntnu.no//exist/rest/db/bibsurfbeta/xql/related.xquery';
+          let id = results[index].about;
+          axios.get(url, {
+              params: {
+                  id: id
+              }})
+              .then(response => {
+                  results[index].related = response.data;
+                  console.log(results[index]);
+                  this.setState({results});
 
-                })
-                .catch((error) => {
-                    console.log(error);
-                    this.setState({firstSearch: false, emptyquery: 'Error'})
-                });
-        }else{
-            this.setState({results});
-        }
+              })
+              .catch((error) => {
+                  console.log(error);
+                  this.setState({firstSearch: false, emptyquery: 'Error'})
+              });
+      }else{
+          this.setState({results});
+      }
 
   }
 
@@ -240,7 +239,7 @@ class App extends Component {
       } else {
         rolesObj[group] = categories;
       }
-    })
+    });
     let filtersCategories = JSON.stringify(categoriesObj);
     let filtersRoles = JSON.stringify(rolesObj);
     let filterOption;
@@ -264,7 +263,7 @@ class App extends Component {
         }
         newgroup.push(foundgroup);
       }
-    })
+    });
     return newgroup;
   }
 
@@ -286,7 +285,7 @@ class App extends Component {
             );
           }
         }
-      })
+      });
       if (newAndorGroups.indexOf(categorygroupkey) !== -1) {
         let foundgroup = newInitCategoryGroups.find(group =>
           group.group === categorygroupkey
@@ -309,16 +308,15 @@ class App extends Component {
       categorygroups.push({group: categorygroupkey,
         categories: sortCategories(categories), isExpanded, hideCheckboxes
       });
-    })
+    });
     return {categorygroups, categorycrumbs}
   }
 
   getAndorCategorygroups(mergedCategorygroups, newInitCategoryGroups, newCategoryCrumbs) {
     let categorygroups = [];
-    let groups = newInitCategoryGroups;
     //needs to iterate through the initial results to calculate new numbers behind the categories
-    groups.forEach(group => {
-      let categories = []
+      newInitCategoryGroups.forEach(group => {
+      let categories = [];
       let isExpanded = false;
       let hideCheckboxes = true;
       let foundGroup = mergedCategorygroups.find(newgroup => newgroup.group === group.group);
@@ -328,7 +326,7 @@ class App extends Component {
       }
       group.categories.forEach(category => {
         if (foundGroup) {
-          let foundCategory = foundGroup.categories.find(newcategory => newcategory.category === category.category)
+          let foundCategory = foundGroup.categories.find(newcategory => newcategory.category === category.category);
           //first group user clicks on, lets the user click on multiple categories
           let canSelectMultiple = this.state.andorgroups.indexOf(group.group) !== -1;
           if (canSelectMultiple) {
@@ -363,7 +361,7 @@ class App extends Component {
             categories.push({category: category.category, total: 0, result: 0, disable: true, showresult: true});
           }
         }
-      })
+      });
       if (foundGroup) {
         //set the top two groups as open
         if (categorygroups.length < 2) {
@@ -371,14 +369,13 @@ class App extends Component {
         }
         categorygroups.push({group: group.group, categories, isExpanded, hideCheckboxes})
       }
-    })
+    });
     return categorygroups;
   }
   getOrCategorygroups(mergedCategorygroups, newInitCategoryGroups) {
     let categorygroups = [];
-    let groups = newInitCategoryGroups;
-    groups.forEach(group => {
-      let categories = []
+    newInitCategoryGroups.forEach(group => {
+      let categories = [];
       let isExpanded = false;
       let hideCheckboxes = true;
       let foundGroup = mergedCategorygroups.find(newgroup => newgroup.group === group.group);
@@ -388,7 +385,7 @@ class App extends Component {
       }
       group.categories.forEach(category => {
         if (foundGroup) {
-          let foundCategory = foundGroup.categories.find(newcategory => newcategory.category === category.category)
+          let foundCategory = foundGroup.categories.find(newcategory => newcategory.category === category.category);
           if (foundCategory) {
             categories.push({category: category.category, total: category.total, result: foundCategory.total});
           } else {
@@ -397,12 +394,12 @@ class App extends Component {
         } else {
           categories.push({category: category.category, total: category.total, result: 0});
         }
-      })
+      });
       if (categorygroups.length < 2) {
         isExpanded = true;
       }
       categorygroups.push({group: group.group, categories, isExpanded, hideCheckboxes})
-    })
+    });
     return categorygroups;
   }
 
@@ -448,7 +445,7 @@ class App extends Component {
     let subtree = newFilterTree;
     let printouturl = new URL(baseUrl + "?query=" + query + "&querytype=" + querytype + "&displaytype=" + displaytype + "&subcollection=" + subcollection +
     "&rankingtype=" + rankingtype + "&categories=" + querydata.filtersCategories + "&roles=" + querydata.filtersRoles + "&filtermethod=" + querydata.filterOption +
-    "&subtree=" + subtree)
+    "&subtree=" + subtree);
     console.log(printouturl.href);
     axios.get(baseUrl, {
               params: {
@@ -464,19 +461,15 @@ class App extends Component {
               }
             })
     .then(response => {
-      let data = response["data"];
-      let results = data["results"];
-      let sessionid = data["sessionid"];
-      console.log(sessionid);
-      let url = null;
-      if (data["next"] !== undefined) {
-        url = data["next"];
-      }
+      let data = response.data;
+      let results = data.results;
+      let url = data.next;
+      let resultsize = data.resultsize;
       if (results !== null) {
         //when the respond only includes one object (not an array) --> convert it to an array
         if (!Array.isArray(results)) {
           results = [results]
-        };
+        }
 
         results = this.getResults(results, newParams);
         let andorgroups = newAndorGroups;
@@ -500,7 +493,7 @@ class App extends Component {
         if (Object.keys(this.state.categorycrumbs).length === 0) {
           initCategorygroups = categorygroups;
         }
-        if (url !== null) {
+        /*if (url !== null) {
           console.log(url)
           axios.get(url).then(responseNext => {
             if (responseNext !== null) {
@@ -515,17 +508,23 @@ class App extends Component {
               }
             }
           })
+        }*/
+        if (url !== ''){
+            console.log("Next = : " + new URL(url).href);
+        }else{
+            console.log("No next")
         }
-        this.setState({firstSearch: false, queryboxcrumb: newQueryboxCrumbs, params: newParams, filterOption: newFilterOption, filterTree: newFilterTree, results, categorygroups, initCategorygroups, categorycrumbs, url: '', resultsNext: '', andorgroups});
-      } else if (this.state.queryboxcrumbs.length === 0) {
+        this.setState({firstSearch: false, resultsize: resultsize, queryboxcrumb: newQueryboxCrumbs, params: newParams, filterOption: newFilterOption, filterTree: newFilterTree, results, categorygroups, initCategorygroups, categorycrumbs, url: url, andorgroups});
+        } else if (this.state.queryboxcrumbs.length === 0) {
+          //In case all querycrumbs are removed, we have an empty query and have to reset all values
         this.setState({queryboxcrumb: newQueryboxCrumbs, params: newParams, filterOption: newFilterOption, filterTree: newFilterTree,
-          results: [], categorygroups: this.createEmptyCategorygroups(categorygroupList),
-          categorycrumbs: {}, url: '', resultsNext: '', emptyquery: 'Empty query', andorgroups: []
+          results: [], categorygroups: App.createEmptyCategorygroups(categorygroupList),
+          categorycrumbs: {}, url: '', emptyquery: 'Empty query', andorgroups: []
         });
       } else {
         //console.log(response.config);
-        this.setState({firstSearch: false, queryboxcrumb: newQueryboxCrumbs, params: newParams, filterOption: newFilterOption, filterTree: newFilterTree,
-          results: [], url: '', resultsNext: '', emptyquery: 'No results matching query: ' +
+        this.setState({firstSearch: false, resultsize: 0, queryboxcrumb: newQueryboxCrumbs, params: newParams, filterOption: newFilterOption, filterTree: newFilterTree,
+          results: [], url: '', emptyquery: 'No results matching query: ' +
           query + ' ' + querytype + ' ' + displaytype + ' ' + rankingtype + ' ' + subcollection
         })
       }
@@ -537,23 +536,23 @@ class App extends Component {
   }
 
   getNextResults() {
-    console.log("Get next is called!");
-    let resultsUpdate = this.state.results.concat(this.state.resultsNext);
-    axios.get(this.state.url).then(responseNext => {
-      if (responseNext !== null) {
-        let resultsNext = responseNext["data"];
-        if (resultsNext !== null) {
-          resultsNext = resultsNext.map(result => {
-            result.open = false;
-            result.activeTab = null;
-            return result;
-          })
-          this.setState({results: resultsUpdate, resultsNext: resultsNext})
-        } else {
-          this.setState({results: resultsUpdate, url: '', resultsNext: ''})
-        }
-      }
-    })
+      console.log("Get next is called : " + new URL(this.state.url).href);
+      //assuming that this.state.url is valid and only is present when there is a valid url
+      axios.get(this.state.url).then(response => {
+          console.log(response.data);
+          if (response !== null) {
+              let results = response.data;
+              if (results !== null) {
+                  results = results.map(result => {
+                      result.open = false;
+                      result.activeTab = null;
+                      return result;
+                  });
+                  let resultsUpdated = this.state.results.concat(results);
+                  this.setState({results: resultsUpdated})
+              }
+          }
+      })
   }
 
   renderDropdownboxs(){
@@ -594,8 +593,8 @@ class App extends Component {
           queryboxcrumbs={this.state.queryboxcrumbs}
           displaytype={this.state.params.displaytype}
           results={this.state.results}
+          resultsize = {this.state.resultsize}
           getNextResults={this.getNextResults}
-          url={this.state.url}
           emptyquery={this.state.emptyquery}
           listCategories={categoryList}
           listCategorygroups={categorygroupList}
@@ -610,7 +609,7 @@ class App extends Component {
     )
   }
 
-  click(event) {
+  click() {
     this.handleClickSubmit(this.queryboxinput.value);
     this.queryboxinput.value = "";
   }
@@ -650,3 +649,4 @@ class App extends Component {
 }
 
 export default App;
+

@@ -4,7 +4,7 @@ import Expression from '../Resultlist/Expression';
 import Manifestation from '../Resultlist/Manifestation';
 import Work from '../Resultlist/Work';
 import uuid from 'uuid/v4';
-import {relationList, roleList} from '../../utils/constants'
+import {roleList} from '../../utils/constants'
 import PropTypes from 'prop-types';
 
 class Resultlist extends Component {
@@ -119,8 +119,8 @@ class Resultlist extends Component {
     return (
       <div id="resultlist">
         {this.renderResults()}
-        {(this.props.url !== '') ?
-          (<Button bsSize="sm" onClick={() => this.props.getNextResults()}>Next 25 >></Button>) : null}
+        {(this.props.resultsize > this.props.results.length) ?
+          (<Button bsSize="sm" onClick={() => this.props.getNextResults()}>Get more results >></Button>) : null}
       </div>
     );
   }
@@ -130,7 +130,6 @@ Resultlist.propTypes = {
   displaytype: PropTypes.string.isRequired,
   results: PropTypes.array.isRequired,
   getNextResults: PropTypes.func,
-  url: PropTypes.string,
   emptyquery: PropTypes.string
 }
 

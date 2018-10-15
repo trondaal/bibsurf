@@ -116,24 +116,25 @@ hr {
 }
 
 .homepagebackground {
-  display: flex;
-  flex-flow: row;
-  padding: 10px;
-  min-width: 768px;
-  background: url(../images/background.jpg);
-  background-repeat: no-repeat;
-  background-size: 100%;
-  height: fill;
-  width: fill;
+    display: flex;
+    flex-flow: row;
+    padding: 10px;
+    min-width: 768px;
+    min-height: 800px;
+    background: url(../images/background.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    max-height: stretch;
+    max-width: stretch;
 }
 
 .homepageform {
-  min-width: 700px;
-  width: 1000px;
-  margin: 30px;
-  padding: 20px;
-  height: fit-content;
-  background-color: white;
+    min-width: 700px;
+    width: 1000px;
+    margin: 30px;
+    padding: 20px;
+    height: fit-content;
+    background-color: white;
 }
 
 .queryboxfieldset{
