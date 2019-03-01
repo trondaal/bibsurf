@@ -1,0 +1,3 @@
+export const INIT_SEARCH = 'INIT_SEARCH';
+export const SEARCH_SUCCESFULL = 'SEARCH_SUCCESFULL';
+export const NEW_QUERY = 'NEW_QUERY'

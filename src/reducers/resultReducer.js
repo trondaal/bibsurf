@@ -1,5 +1,23 @@
+import {INIT_SEARCH, NEW_QUERY} from '../constants'
+
+
 const resultReducer = (state={}, action) => {
-    return state
+    switch(action.type){
+        case INIT_SEARCH:
+            return {
+                ...state,
+                loading: true
+            }
+        case NEW_QUERY:
+            console.log(action.payload.pagesize)
+            return {
+                results: [...action.payload.results],
+                next: action.payload.next,
+                loading: false
+            }
+        default:
+            return state
+    }
 }
 
 export default resultReducer
