@@ -9,7 +9,6 @@ const resultReducer = (state={}, action) => {
                 loading: true
             }
         case NEW_QUERY:
-            console.log(action.payload.pagesize)
             return {
                 results: [...action.payload.results],
                 next: action.payload.next,

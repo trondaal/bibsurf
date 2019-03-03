@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
+import { ResultDetail} from './ResultDetail'
+import {ResultDiv,WorkTitleDiv,TabBarDiv,TabButton, DetailContainer} from './style.js'
 
 class Result extends Component {
 
     state = {
         activeTab: null,
         toggled: false,
-        tabs: ["tab1", "tab2"],
     }
-
 
     toggleTab = (e) => {
         if(!this.state.toggled) {
@@ -16,13 +16,11 @@ class Result extends Component {
                 toggled: true,
             })
         }
-
         else if(this.state.activeTab !== e.target.id){
             this.setState({
                 activeTab: e.target.id
             })
         }
-
         else{
             this.setState({
             activeTab: e.target.id,
@@ -31,16 +29,54 @@ class Result extends Component {
         }
     }
 
+    getTabs = () => {
+        let tabs = []
+        this.props.result.expressionOfWork.map(expression => {
+            let type = `${expression.contentType} (${expression.languageOfExpression})`;
+            if(!tabs.some(tab => (tab.tabTitle === type))){
+                tabs.push({
+                    tabTitle: type,
+                    manifestations: [...expression.manifestationOfExpression]
+                });
+            }
+            else{
+                const tab = tabs.filter(t => (t.tabTitle === type))[0]
+                tab.manifestations = [...tab.manifestations, ...expression.manifestationOfExpression]
+            }
+        })
+        return tabs;
+            
+    }
+
+    
+    getManifestationsOfTab = (tabManifestations) => {
+        return tabManifestations.map((manifestation, i) => {
+            return <ResultDetail detail={manifestation} 
+                last={i === tabManifestations.length - 1} 
+                key={manifestation.identifierForTheManifestation} />
+        })
+    }
+
     render() {
-        console.log(this.state.toggled);
+
+        const tabs = this.getTabs()
+        const tabManifestations = this.state.activeTab ? tabs.filter(tab => (tab.tabTitle === this.state.activeTab))[0].manifestations : null;
+        const {result} = this.props
+        console.log(result);
         return (
-            <div className="result">
-                <div className="tab-bar">
-                    <button onClick={this.toggleTab} id={0}>Tab1</button>
-                    <button onClick={this.toggleTab} id={1}>Tab2</button>
-                </div>
-                {this.state.toggled  && <h1>{this.state.tabs[this.state.activeTab]}</h1>}
-            </div>
+            <ResultDiv>
+                <WorkTitleDiv><h3>{result.titleOfWork[0]} /</h3></WorkTitleDiv>
+                <TabBarDiv>
+                    {tabs.map(tab => {
+                        return <TabButton 
+                            onClick={this.toggleTab} 
+                            id={tab.tabTitle}
+                            key={tab.manifestations[0].about} 
+                            active={tab.tabTitle === this.state.activeTab && this.state.toggled}>{tab.tabTitle}</TabButton> 
+                    })}
+                </TabBarDiv>
+                {this.state.toggled && <DetailContainer>{this.getManifestationsOfTab(tabManifestations)}</DetailContainer>}
+            </ResultDiv>
         )
     }
 }
