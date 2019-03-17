@@ -1,38 +1,30 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { connect } from 'react-redux'
+import SearchBar from './containers/searchBar'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import ResultList from './containers/ResultContainers/ResultList'
 
 class App extends Component {
   render() {
-    console.log(this.props.query)
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            {this.props.query.hei}
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className='container'>
+        <div className='nav-bar'><h2>Her kommer søkebaren</h2></div>
+        <div className='results-container'>
+          <div className='filter-container'>
+            her kommer filterne
+          </div>
+          <ResultList />
+        </div>
       </div>
-    );
+    )
   }
 }
 
 const mapStateToProps = (state) => (
   {
-    query: state.query
+    query: state.query,
+    filter: state.filter
   }
 )
 
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(App)
