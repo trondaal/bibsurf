@@ -1,3 +1,4 @@
+import SearchBar from './containers/searchBar'
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import ResultList from './containers/ResultContainers/ResultList'
@@ -20,7 +21,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => (
   {
-    query: state.query
+    query: state.query,
+    filter: state.filter
   }
 )
 

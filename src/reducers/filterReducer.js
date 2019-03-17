@@ -1,5 +1,6 @@
-const filterReducer = ( state={}, action ) => {
-    return state
+const filterReducer = (state={}, {type, payload}) => {
+  return state
 }
 
-export default filterReducer;
+
+export default filterReducer
