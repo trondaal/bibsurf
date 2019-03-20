@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <div className='container'>
-        <div className='nav-bar'><h2>Her kommer søkebaren</h2></div>
+        <div className='nav-bar'><SearchBar /></div>
         <div className='results-container'>
           <div className='filter-container'>
             her kommer filterne
