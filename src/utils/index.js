@@ -1,0 +1,1 @@
+export const capitalize = s => s && s[0].toLowerCase() + s.slice(1)

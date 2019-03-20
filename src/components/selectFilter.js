@@ -19,6 +19,7 @@ class SelectFilter extends Component {
 
   render() {
     const {name, options} = this.props
+    const {selected} = this.state
     return (
       <FormControl variant='outlined' style={{width: "10vw"}}>
         <InputLabel
@@ -30,7 +31,7 @@ class SelectFilter extends Component {
           {name}
         </InputLabel>
         <Select
-          value={this.state.selected}
+          value={selected}
           onChange={this.handleChange("selected")}
           input={
             <OutlinedInput

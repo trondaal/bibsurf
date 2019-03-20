@@ -1,19 +1,20 @@
-import {INIT_SEARCH, NEW_QUERY} from '../constants'
+import {INIT_SEARCH, NEW_QUERY, BASE_URL} from '../constants'
+import {capitalize} from '../utils'
 
-import axios from 'axios'
+export const newQuery = (terms, {Match, Display, Ranking}) => async dispatch => {
+  dispatch({
+    type: INIT_SEARCH
+  })
+  const query = terms ? terms.map(e => e.replace(" ", "%20")).join("%20") : ""
+  const url = `${BASE_URL}query=${query}&querytype=${capitalize(Match)}&displaytype=${capitalize(Display)}&subcollection=&rankingtype=${capitalize(Ranking)}&categories={}&roles={}&filtermethod=&subtree=false`
+  console.log(url)
+  const response = await fetch(url)
+  const json = await response.json()
 
-export const newQuery = (url) => dispatch => {
+  return (
     dispatch({
-        type: INIT_SEARCH
+      type: NEW_QUERY,
+      payload: json
     })
-    return (
-        axios.get(url).then(res => {
-            dispatch({
-                type: NEW_QUERY,
-                payload: res.data
-            })
-        }).catch(err => {
-            console.log(err)
-        })
-    )
+  )
 }

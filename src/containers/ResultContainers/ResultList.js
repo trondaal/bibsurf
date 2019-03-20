@@ -6,9 +6,9 @@ import Result from '../../components/ResultComponents/Result'
 
 class ResultList extends Component {
 
-    componentDidMount(){
-        this.props.newQuery('http://dijon.idi.ntnu.no/exist/rest/db/bibsurfbeta/xql/search.xquery?query=murder&querytype=all&displaytype=works&subcollection=&rankingtype=default&categories=%7B%7D&roles=%7B%7D&filtermethod=&subtree=false')
-    }
+  componentDidMount(){
+    this.props.newQuery(this.props.terms, this.props.selectedFilters)
+  }
 
     renderResults = () => {
       return this.props.results.map(result => {
