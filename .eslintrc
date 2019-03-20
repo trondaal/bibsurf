@@ -56,5 +56,5 @@
     "react/no-deprecated": "warn",
     "lines-between-class-members":"error",
     "react/prop-types": 0
-  },
+  }
 }
