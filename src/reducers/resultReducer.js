@@ -8,15 +8,20 @@ const resultReducer = (state={}, action) => {
       ...state,
       loading: true
     }
-        case NEW_QUERY:
-            return {
-                results: [...action.payload.results],
-                next: action.payload.next,
-                loading: false
-            }
-        default:
-            return state
+  case NEW_QUERY:
+    return action.payload.results ? {
+      results: [...action.payload.results],
+      next: action.payload.next,
+      loading: false
     }
+      : {
+        results: [],
+        next: "",
+        loading: true
+      }
+  default:
+    return state
+  }
 }
 
 export default resultReducer
