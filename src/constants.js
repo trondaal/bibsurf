@@ -1,4 +1,4 @@
-export const searchBarFilters = {
+export const dropDownFilters = {
   Match: ['All', 'Any', 'Phrase', 'Near'],
   Display: ['Works', 'Expressions', 'Manifestations' ],
   Ranking: ['Default', 'Entity hits', 'Publications #']
@@ -11,3 +11,4 @@ export const INIT_SEARCH = 'INIT_SEARCH'
 export const SEARCH_SUCCESFULL = 'SEARCH_SUCCESFULL'
 export const NEW_QUERY = 'NEW_QUERY'
 export const FILTER_CHANGED = "FILTER_CHANGED"
+export const UPDATE_SIDEBAR_FILTERS = "UPDATE_SIDEBAR_FILTERS"

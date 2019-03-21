@@ -1,4 +1,4 @@
-import {ADD_SEARCH_TERM, REMOVE_SEARCH_TERM, CHANGE_SELECTED_FILTER, searchBarFilters, NEW_QUERY} from "../constants"
+import {ADD_SEARCH_TERM, REMOVE_SEARCH_TERM, CHANGE_SELECTED_FILTER} from "../constants"
 
 const selectedFilters = {
   "Match": "All",
@@ -8,11 +8,12 @@ const selectedFilters = {
 
 const terms = ["murder"]
 
-const queryReducer = (state={searchBarFilters, selectedFilters, terms}, {type, payload}) => {
+const queryReducer = (state={selectedFilters, terms}, {type, payload}) => {
   const newState = {...state}
   switch (type) {
   case ADD_SEARCH_TERM:{
     newState.terms = [...newState.terms, payload]
+
     return {...newState}
   }
 

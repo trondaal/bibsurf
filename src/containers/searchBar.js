@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 
 import {connect} from 'react-redux'
 import {TextField, Chip, IconButton} from '@material-ui/core'
+
+import {dropDownFilters as filter} from '../constants'
 import DropDownFilter from '../components/DropDownFilter'
 import {addSearchTerm, removeSearchTerm, changeSelectedFilter, newQuery} from '../actions'
 
