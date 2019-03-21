@@ -5,7 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 
-class SelectFilter extends Component {
+class DropDownFilter extends Component {
   state = {
     selected: this.props.options[0]
   }
@@ -49,4 +49,4 @@ class SelectFilter extends Component {
   }
 }
 
-export default SelectFilter
+export default DropDownFilter

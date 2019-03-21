@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 
 import {connect} from 'react-redux'
-import SelectFilter from '../components/selectFilter'
 import {TextField, Chip, IconButton} from '@material-ui/core'
+import DropDownFilter from '../components/DropDownFilter'
 import {addSearchTerm, removeSearchTerm, changeSelectedFilter, newQuery} from '../actions'
 
 class SearchBar extends Component {
@@ -39,7 +39,7 @@ class SearchBar extends Component {
 
 
   createLists = (filters) => Object.keys(filters).map((item, i) =>
-    <SelectFilter name={item} options={filters[item]} key={i} changeSelectedFilter={this.props.changeSelectedFilter} />)
+    <DropDownFilter name={item} options={filters[item]} key={i} changeSelectedFilter={this.props.changeSelectedFilter} />)
 
   createChips = terms =>
     terms.map((term, i) =>
@@ -47,7 +47,7 @@ class SearchBar extends Component {
 
 
   render() {
-    const {filter, terms} = this.props
+    const {terms} = this.props
     const {currentSearch} = this.state
     return (
       <div>
@@ -71,7 +71,6 @@ class SearchBar extends Component {
 
 const mapStateToProps = (state) => (
   {
-    filter: state.query.searchBarFilters,
     selectedFilters: state.query.selectedFilters,
     terms: state.query.terms
   }
