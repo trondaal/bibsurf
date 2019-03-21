@@ -5,7 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 
-class SelectFilter extends Component {
+class DropDownFilter extends Component {
   state = {
     selected: this.props.options[0]
   }
@@ -19,6 +19,7 @@ class SelectFilter extends Component {
 
   render() {
     const {name, options} = this.props
+    const {selected} = this.state
     return (
       <FormControl variant='outlined' style={{width: "10vw"}}>
         <InputLabel
@@ -30,7 +31,7 @@ class SelectFilter extends Component {
           {name}
         </InputLabel>
         <Select
-          value={this.state.selected}
+          value={selected}
           onChange={this.handleChange("selected")}
           input={
             <OutlinedInput
@@ -48,4 +49,4 @@ class SelectFilter extends Component {
   }
 }
 
-export default SelectFilter
+export default DropDownFilter
