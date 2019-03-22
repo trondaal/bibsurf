@@ -11,6 +11,9 @@ import {ExpansionPanel,
   Paper
 } from '@material-ui/core'
 
+import {translations} from '../../constants'
+
+
 export default class FilterCard extends Component {
   state = {
     value: 'AND'
