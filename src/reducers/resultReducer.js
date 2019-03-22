@@ -14,7 +14,7 @@ const resultReducer = (state={}, action) => {
       next: action.payload.next,
       loading: false,
       categories: {...action.payload.categories},
-      roles: {...action.payload.categories},
+      roles: {...action.payload.roles},
       resultSize: action.payload.resultsize
     }
       : {
