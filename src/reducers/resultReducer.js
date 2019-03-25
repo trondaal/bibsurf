@@ -18,6 +18,8 @@ const resultReducer = (state = initState, action) => {
       ...state,
       results: [...action.payload.results],
       next: action.payload.next,
+      categories: action.payload.categories,
+      roles: action.payload.categories,
       loading: false
     }
   case GET_RELATED_WORKS:
