@@ -1,12 +1,12 @@
 import {combineReducers} from 'redux'
 
 import queryReducer from './queryReducer'
-import categoryReducer from './categoryReducer'
+import filterReducer from './filterReducer'
 import resultReducer from './resultReducer'
 
 const rootReducer = combineReducers({
   query: queryReducer,
-  category: categoryReducer,
+  filter: filterReducer,
   result: resultReducer
 })
 
