@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import ResultList from './containers/ResultContainers/ResultList'
+import WorksList from './containers/ResultContainers/WorksList'
+import ManifestationsList from './containers/ResultContainers/ManifestationsList'
+import CategoryList from './containers/CategoryList'
 
 class App extends Component {
   render() {
@@ -9,9 +11,9 @@ class App extends Component {
         <div className='nav-bar'><h2>Her kommer søkebaren</h2></div>
         <div className='results-container'>
           <div className='filter-container'>
-            her kommer filterne
+            <CategoryList />
           </div>
-          <ResultList />
+          <WorksList />
         </div>
       </div>
     )

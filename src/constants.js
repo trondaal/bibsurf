@@ -1,3 +1,6 @@
-export const INIT_SEARCH = 'INIT_SEARCH';
-export const SEARCH_SUCCESFULL = 'SEARCH_SUCCESFULL';
+export const API_URL = 'http://dijon.idi.ntnu.no//exist/rest/db/bibsurfbeta/xql/'
+export const INIT_SEARCH = 'INIT_SEARCH'
+export const SEARCH_SUCCESFULL = 'SEARCH_SUCCESFULL'
 export const NEW_QUERY = 'NEW_QUERY'
+export const GET_RELATED_WORKS = 'GET_RELATED_WORKS'
+export const GET_NEXT = 'GET_NEXT'
