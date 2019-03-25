@@ -30,7 +30,7 @@ code {
   width: 100vw;
   height: 100px;
   margin-bottom: 10px;
-  background-color: rgb(82, 82, 82);
+  background-color: rgb(209, 220, 223);
 
 }
 
@@ -56,6 +56,7 @@ code {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  margin-top: 1em;
   width: 25vw;
 }
 

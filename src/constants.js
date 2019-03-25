@@ -3,6 +3,23 @@ export const dropDownFilters = {
   Display: ['Works', 'Expressions', 'Manifestations' ],
   Ranking: ['Default', 'Entity hits', 'Publications #']
 }
+
+export const translations = {
+  "Filter options": "Filter options",
+  "m:carrierType": "Type of Carrier",
+  "w:formOfWork": "Form of Work",
+  "m:mediaType": "Type of Media",
+  "e:languageOfExpression": "Language",
+  "e:contentType": "Type of Content",
+  "w:compiler": "Editor",
+  "w:artist": "Artist",
+  "w:author": "Author",
+  "e:translator": "Translator",
+  "w:director": "Director",
+  "u:actor": "Actor",
+  "e:narrator": "Narrator"
+}
+
 export const BASE_URL = "http://dijon.idi.ntnu.no/exist/rest/db/bibsurfbeta/xql/search.xquery?"
 export const ADD_SEARCH_TERM = "ADD_SEARCH_TERM"
 export const REMOVE_SEARCH_TERM = "REMOVE_SEARCH_TERM"
