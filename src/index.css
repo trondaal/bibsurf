@@ -41,15 +41,6 @@ code {
   width: 100vw;
 }
 
-.result-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  margin-top: 1em;
-  width: 75vw; 
-}
-
 
 .filter-container {
   display: flex;
@@ -58,10 +49,5 @@ code {
   align-items: center;
   margin-top: 1em;
   width: 25vw;
-}
-
-
-button:focus {
-  outline: 0;
 }
 

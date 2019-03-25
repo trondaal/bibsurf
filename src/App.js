@@ -1,8 +1,10 @@
 import SearchBar from './containers/searchBar'
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import ResultList from './containers/ResultContainers/ResultList'
+import WorksList from './containers/ResultContainers/WorksList'
+import ManifestationsList from './containers/ResultContainers/ManifestationsList'
 import {FilterList} from './components/SideBarFilter'
+
 
 class App extends Component {
   render() {
@@ -13,8 +15,7 @@ class App extends Component {
           <div className='filter-container' >
             <FilterList />
           </div>
-          <ResultList />
-
+          <WorksList />
         </div>
       </div>
     )

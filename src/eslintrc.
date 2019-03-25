@@ -25,6 +25,7 @@
     "prettier",
     "react"
   ],
+  "parser": "babel-eslint",
   "rules": {
     "require-jsdoc":"warn",
     "no-useless-escape":"error",
@@ -55,6 +56,6 @@
     "react/jsx-sort-props":"error",
     "react/no-deprecated": "warn",
     "lines-between-class-members":"error",
-    "react/prop-types": 0
+    "react/prop-types": 0,
   },
 }
