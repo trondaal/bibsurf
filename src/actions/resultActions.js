@@ -1,16 +1,22 @@
-import {INIT_SEARCH, NEW_QUERY, GET_RELATED_WORKS, API_URL, GET_NEXT, BASE_URL} from '../constants'
+import {INIT_SEARCH, NEW_QUERY, GET_RELATED_WORKS, API_URL, GET_NEXT, BASE_URL, NO_RESULTS} from '../constants'
 import axios from 'axios'
 import {capitalize} from '../utils'
 
-export const newQuery = (terms, {Match, Display, Ranking}) => async dispatch => {
+export const newQuery = url => async dispatch => {
   dispatch({
     type: INIT_SEARCH
   })
-  const query = terms ? terms.map(e => e.replace(" ", "%20")).join("%20") : ""
-  const url = `${BASE_URL}query=${query}&querytype=${capitalize (Match)}&displaytype=${capitalize(Display)}&subcollection=&rankingtype=${capitalize(Ranking)}&categories={}&roles={}&filtermethod=&subtree=false`
-  console.log(url)
-  const response = await fetch(url)
+  const query = `${BASE_URL}${url}`
+  const response = await fetch(query)
   const json = await response.json()
+
+  if(json.results === null){
+    return (
+      dispatch({
+        type: NO_RESULTS
+      })
+    )
+  }
   return (
     dispatch({
       type: NEW_QUERY,
@@ -21,7 +27,6 @@ export const newQuery = (terms, {Match, Display, Ranking}) => async dispatch => 
 
 export const getNext = (next) => dispatch => {
   return axios.get(next).then(res => {
-    console.log(res.data)
     dispatch({
       type: GET_NEXT,
       payload: res.data

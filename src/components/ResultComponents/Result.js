@@ -38,7 +38,7 @@ class Result extends Component {
 
     getTabs = () => {
       const tabs = []
-      this.props.result.expressionOfWork.map(expression => {
+      this.props.result.expressionOfWork.forEach(expression => {
         const type = `${expression.contentType} (${expression.languageOfExpression})`
         if(!tabs.some(tab => (tab.tabTitle === type))){
           tabs.push({
@@ -61,7 +61,7 @@ class Result extends Component {
 
     getTabs = () => {
       const tabs = []
-      this.props.result.expressionOfWork.map(expression => {
+      this.props.result.expressionOfWork.forEach(expression => {
         const type = this.capitalizeFirstLetter(`${expression.contentType} (${expression.languageOfExpression})`)
         if(!tabs.some(tab => (tab.tabTitle === type))){
           tabs.push({

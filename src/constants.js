@@ -4,6 +4,12 @@ export const dropDownFilters = {
   Ranking: ['Default', 'Entity hits', 'Publications #']
 }
 
+export const dropDownFiltersTranslated = {
+  Match: 'querytype',
+  Display: 'displaytype',
+  Ranking: 'rankingtype'
+}
+
 export const translations = {
   "Filter options": "Filter options",
   "m:carrierType": "Type of Carrier",
@@ -32,3 +38,6 @@ export const FILTER_CHANGED = "FILTER_CHANGED"
 export const UPDATE_SIDEBAR_FILTERS = "UPDATE_SIDEBAR_FILTERS"
 export const GET_NEXT = 'GET_NEXT'
 export const GET_RELATED_WORKS = 'GET_RELATED_WORKS'
+export const URL_CHANGED = "URL_CHANGED"
+export const NO_RESULTS = "NO_RESULTS"
+export const CHANGE_DISPLAY ="CHANGE_DISPLAY"

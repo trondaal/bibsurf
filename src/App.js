@@ -1,23 +1,21 @@
 import SearchBar from './containers/searchBar'
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+
+
 import WorksList from './containers/ResultContainers/WorksList'
 import ManifestationsList from './containers/ResultContainers/ManifestationsList'
 import {FilterList} from './components/SideBarFilter'
+import DisplayContainer from './DisplayContainer'
 
 
 class App extends Component {
   render() {
     return (
-      <div className='container'>
-        <div className='nav-bar'><SearchBar /></div>
-        <div className='results-container'>
-          <div className='filter-container' >
-            <FilterList />
-          </div>
-          <WorksList />
-        </div>
-      </div>
+
+      <div>gjgjgj</div>
+
     )
   }
 }

@@ -6,6 +6,7 @@ import {TextField, Chip, IconButton} from '@material-ui/core'
 import {dropDownFilters as filter} from '../constants'
 import DropDownFilter from '../components/DropDownFilter'
 import {addSearchTerm, removeSearchTerm, changeSelectedFilter, newQuery} from '../actions'
+import {urlChanged} from '../actions/queryActions'
 
 class SearchBar extends Component {
   state = {
@@ -31,29 +32,45 @@ class SearchBar extends Component {
     })
   }
 
-  handleSearch = async (searchTerm) => {
-    if(searchTerm){
-      await this.props.addSearchTerm(searchTerm)
-      this.props.newQuery(this.props.terms, this.props.selectedFilters)
+  removeSearchTerm = term => {
+    console.log(term)
+    const newTerms = this.props.url.get('query').split(' ').filter(queryTerm => queryTerm !== term)
+    console.log(newTerms.join(' '))
+    this.props.url.set('query', newTerms.join(' '))
+    this.props.urlChanged(true)
+  }
+
+  handleSearch = () => {
+
+    if(this.state.currentSearch){
+      /*await this.props.addSearchTerm(searchTerm)
+      this.props.newQuery(this.props.terms, this.props.selectedFilters)*/
+      const currentQuery = this.props.url.get('query')
+      const newQuery = currentQuery === null ? this.state.currentSearch : `${currentQuery} ${this.state.currentSearch}`
+
       this.setState({currentSearch: ""})
+      this.props.url.set('query', newQuery)
+
+      this.props.urlChanged(true)
     }
   }
 
-
   createLists = (filters) => Object.keys(filters).map((item, i) =>
-    <DropDownFilter name={item} options={filters[item]} key={i} changeSelectedFilter={this.props.changeSelectedFilter} />)
+    <DropDownFilter name={item} options={filters[item]} key={i} url={this.props.url} changeSelectedFilter={this.props.changeSelectedFilter} />)
 
-  createChips = terms =>
-    terms.map((term, i) =>
-      <Chip key={i} label={term} variant='outlined' color='primary' onDelete={() => this.props.removeSearchTerm(term)} />)
+  createChips = () => (
+    this.props.url.get('query').split(' ').map((term, i) =>
+      <Chip key={i} label={term} variant='outlined' color='primary' onDelete={() => this.removeSearchTerm(term)} />)
+  )
 
 
   render() {
+    const queryTerms = this.props.url.get('query')
     const {terms} = this.props
     const {currentSearch} = this.state
     return (
       <div>
-        {this.createChips(terms)}
+        {queryTerms !== null && this.createChips(terms)}
         <TextField
           value={currentSearch}
           onChange={this.handleChange('currentSearch')}
@@ -61,7 +78,7 @@ class SearchBar extends Component {
           variant='outlined'
         />
         <IconButton aria-label='Search'
-          onClick={() => this.handleSearch(currentSearch)}
+          onClick={() => this.handleSearch()}
         >
           Submit
         </IconButton>
@@ -74,8 +91,9 @@ class SearchBar extends Component {
 const mapStateToProps = (state) => (
   {
     selectedFilters: state.query.selectedFilters,
-    terms: state.query.terms
+    terms: state.query.terms,
+    urlTerms: state.query.urlTerms
   }
 )
 
-export default connect(mapStateToProps, {newQuery, addSearchTerm, removeSearchTerm, changeSelectedFilter})(SearchBar)
+export default connect(mapStateToProps, {newQuery, addSearchTerm, removeSearchTerm, changeSelectedFilter, urlChanged})(SearchBar)
