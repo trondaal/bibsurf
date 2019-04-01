@@ -1,9 +1,12 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import OutlinedInput from '@material-ui/core/OutlinedInput'
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
+import {dropDownFiltersTranslated as translated} from '../constants'
+import {urlChanged, changeDisplay} from '../actions/queryActions'
 
 class DropDownFilter extends Component {
   state = {
@@ -14,11 +17,28 @@ class DropDownFilter extends Component {
     this.setState({
       [name]: event.target.value
     })
-    this.props.changeSelectedFilter({[this.props.name]: event.target.value})
+    this.props.url.set(translated[this.props.name], event.target.value.toLowerCase())
+    if(this.props.name === 'Display') {
+      this.props.changeDisplay()
+    }
+    this.props.urlChanged(true)
+  }
+
+  //Select the value of the dropown based on the url.
+  getSelected = () => {
+    const {url, name, options} = this.props
+    const option = options.filter(option => option.toLowerCase() === url.get(translated[name]))
+    if(this.props.url.get(translated[name]) && option.length === 1){
+      return option
+    }else{
+      return this.props.options[0]
+    }
   }
 
   render() {
+
     const {name, options} = this.props
+
     const {selected} = this.state
     return (
       <FormControl variant='outlined' style={{width: "10vw"}}>
@@ -31,7 +51,7 @@ class DropDownFilter extends Component {
           {name}
         </InputLabel>
         <Select
-          value={selected}
+          value={this.getSelected()}
           onChange={this.handleChange("selected")}
           input={
             <OutlinedInput
@@ -49,4 +69,4 @@ class DropDownFilter extends Component {
   }
 }
 
-export default DropDownFilter
+export default connect(null, {urlChanged, changeDisplay})(DropDownFilter)

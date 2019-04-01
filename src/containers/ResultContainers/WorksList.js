@@ -1,44 +1,57 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import uuid from 'uuid'
 
-import {newQuery, getNext} from '../../actions/resultActions'
+import {newQuery, getNext} from '../../actions/resultActions'
 import Result from '../../components/ResultComponents/Result'
-import {ResultContainer} from './style'
+import {ResultContainer} from './style'
+import {BASE_URL} from '../../constants'
 
 
 class WorksList extends Component {
-    renderResults = () => {
-      return this.props.results.map(result => {
-        return <Result result={result} key={uuid()} />
-      })
+
+  componentDidMount() {
+    this.props.newQuery(this.props.url)
+  }
+
+  componentDidUpdate(prevProps) {
+    if(prevProps.url !== this.props.url){
+      this.props.newQuery(this.props.url)
     }
-
-    getNext = () => {
-      this.props.getNext(this.props.next)
-    }
+  }
 
 
-    render() {
-      console.log(this.props.results)
-      if(!this.props.results) {
-        return (
-          <ResultContainer />
-        )
-      }
+  renderResults = () => {
+    return this.props.results.map(result => {
+      return <Result result={result} key={uuid()} />
+    })
+  }
+
+  handleGetNext = () => {
+    this.props.getNext(this.props.next)
+  }
+
+
+  render() {
+    if(!this.props.results) {
       return (
-        <ResultContainer>
-          {this.renderResults()}
-          <button onClick={this.getNext}>Get more result</button>
-        </ResultContainer>
+        <ResultContainer />
       )
     }
+    return (
+      <ResultContainer>
+        {this.renderResults()}
+        {this.props.results.length !== this.props.resultSize && <button onClick={this.handleGetNext}>Get more result</button>}
+      </ResultContainer>
+    )
+  }
 }
 
 const mapStateToProps = (state) => {
   return {
     results: state.result.results,
-    next: state.result.next
+    next: state.result.next,
+    resultSize: state.result.resultSize
   }
 }
 
