@@ -1,6 +1,14 @@
-import {INIT_SEARCH, NEW_QUERY, GET_RELATED_WORKS, API_URL, GET_NEXT, BASE_URL, NO_RESULTS} from '../constants'
+import {INIT_SEARCH,
+  NEW_QUERY,
+  GET_RELATED_WORKS,
+  API_URL,
+  GET_NEXT,
+  BASE_URL,
+  NO_RESULTS,
+  ONE_RESULT,
+  defaultSearchParams} from '../constants'
 import axios from 'axios'
-import {capitalize} from '../utils'
+
 
 export const newQuery = url => async dispatch => {
   dispatch({
@@ -9,13 +17,18 @@ export const newQuery = url => async dispatch => {
   const query = `${BASE_URL}${url}`
   const response = await fetch(query)
   const json = await response.json()
-
   if(json.results === null){
     return (
       dispatch({
         type: NO_RESULTS
       })
     )
+  }
+  if(json.results.length === undefined) {
+    return dispatch({
+      type: ONE_RESULT,
+      payload: json
+    })
   }
   return (
     dispatch({

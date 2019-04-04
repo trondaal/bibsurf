@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import uuid from 'uuid'
 
 import {ResultDetail} from './ResultDetail'
@@ -97,6 +97,7 @@ class Result extends Component {
 
 
     getRelatedWorks = (e) => {
+      console.log(this.props.related)
       if(!this.props.related.some(relation => relation.workId === this.props.result.about)){
         this.toggleTab(e)
         this.props.getRelatedWorks(this.props.result.about)

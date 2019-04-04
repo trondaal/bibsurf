@@ -1,9 +1,10 @@
-import {INIT_SEARCH, NEW_QUERY, GET_RELATED_WORKS, GET_NEXT, NO_RESULTS, URL_CHANGED, CHANGE_DISPLAY} from '../constants'
+import {INIT_SEARCH, NEW_QUERY, GET_RELATED_WORKS, GET_NEXT, NO_RESULTS, CHANGE_DISPLAY, ONE_RESULT} from '../constants'
 
 const initState = {
   results: [],
   related: []
 }
+
 
 const resultReducer = (state = initState, action) => {
   switch (action.type) {
@@ -18,10 +19,22 @@ const resultReducer = (state = initState, action) => {
       results: [...action.payload.results],
       next: action.payload.next,
       categories: action.payload.categories,
-      roles: action.payload.categories,
+      roles: action.payload.roles,
       resultSize: action.payload.resultsize,
       loading: false
     }
+
+  case ONE_RESULT:
+    return {
+      ...state,
+      results: [action.payload.results],
+      next: action.payload.next,
+      categories: action.payload.categories,
+      roles: action.payload.roles,
+      resultSize: action.payload.resultsize,
+      loading: false
+    }
+
   case GET_RELATED_WORKS:
     return {
       ...state,
@@ -33,13 +46,10 @@ const resultReducer = (state = initState, action) => {
       results: [...state.results, ...action.payload]
     }
   case NO_RESULTS:
-    return {
-      initState
-    }
+    return initState
+
   case CHANGE_DISPLAY:
-    return {
-      initState
-    }
+    return initState
   default:
     return state
   }

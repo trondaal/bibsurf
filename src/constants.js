@@ -26,6 +26,16 @@ export const translations = {
   "e:narrator": "Narrator"
 }
 
+export const defaultSearchParams = {
+  'querytype': 'all',
+  'subcollection': '',
+  'rankingtype': 'default',
+  'categories': '%7B%7D',
+  'role': '%7B%7D',
+  'filtermethod': '',
+  'subtree': 'false'
+}
+
 export const BASE_URL = "http://dijon.idi.ntnu.no/exist/rest/db/bibsurfbeta/xql/search.xquery?"
 export const ADD_SEARCH_TERM = "ADD_SEARCH_TERM"
 export const REMOVE_SEARCH_TERM = "REMOVE_SEARCH_TERM"
@@ -41,3 +51,5 @@ export const GET_RELATED_WORKS = 'GET_RELATED_WORKS'
 export const URL_CHANGED = "URL_CHANGED"
 export const NO_RESULTS = "NO_RESULTS"
 export const CHANGE_DISPLAY ="CHANGE_DISPLAY"
+export const NEW_URL = "NEW_URL"
+export const ONE_RESULT = "ONE_RESULT"
