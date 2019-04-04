@@ -5,6 +5,7 @@ import uuid from 'uuid'
 import {ResultDetail} from './ResultDetail'
 import {RelatedWorks} from './RelatedWorks'
 import {ResultDiv,WorkTitleDiv,TabBarDiv,TabButton, DetailContainer} from './style.js'
+import {capitalizeFirstLetter} from '../../functions/functions'
 
 
 import {getRelatedWorks} from '../../actions/resultActions'
@@ -39,7 +40,7 @@ class Result extends Component {
     getTabs = () => {
       const tabs = []
       this.props.result.expressionOfWork.forEach(expression => {
-        const type = `${expression.contentType} (${expression.languageOfExpression})`
+        const type = capitalizeFirstLetter(`${expression.contentType} (${expression.languageOfExpression})`)
         if(!tabs.some(tab => (tab.tabTitle === type))){
           tabs.push({
             tabTitle: type,
@@ -54,30 +55,17 @@ class Result extends Component {
       return tabs
     }
 
-    capitalizeFirstLetter = (string) => {
-      return string.charAt(0).toUpperCase() + string.slice(1)
+    getRelatedWorks = (e) => {
+      console.log(this.props.related)
+      if(!this.props.related.some(relation => relation.workId === this.props.result.about)){
+        this.toggleTab(e)
+        this.props.getRelatedWorks(this.props.result.about)
+      }
+      else{
+        this.toggleTab(e)
+      }
     }
-
-
-    getTabs = () => {
-      const tabs = []
-      this.props.result.expressionOfWork.forEach(expression => {
-        const type = this.capitalizeFirstLetter(`${expression.contentType} (${expression.languageOfExpression})`)
-        if(!tabs.some(tab => (tab.tabTitle === type))){
-          tabs.push({
-            tabTitle: type,
-            manifestations: [...expression.manifestationOfExpression]
-          })
-        }
-        else{
-          const tab = tabs.filter(t => (t.tabTitle === type))[0]
-          tab.manifestations = [...tab.manifestations, ...expression.manifestationOfExpression]
-        }
-      })
-
-      return tabs
-    }
-
+    
     getManifestationsOfTab = (activeTab) => {
       if(activeTab.tabTitle === "Related works"){
         const relation = this.props.related.filter(relation => (relation.workId === this.props.result.about))[0]
@@ -94,19 +82,6 @@ class Result extends Component {
         })
       }
     }
-
-
-    getRelatedWorks = (e) => {
-      console.log(this.props.related)
-      if(!this.props.related.some(relation => relation.workId === this.props.result.about)){
-        this.toggleTab(e)
-        this.props.getRelatedWorks(this.props.result.about)
-      }
-      else{
-        this.toggleTab(e)
-      }
-    }
-
 
     render() {
       const {result} = this.props

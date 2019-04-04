@@ -14,7 +14,14 @@ export const newQuery = url => async dispatch => {
   dispatch({
     type: INIT_SEARCH
   })
-  const query = `${BASE_URL}${url}`
+  const searchURL = new URLSearchParams(`?${url}`)
+  Object.entries(defaultSearchParams).forEach( param => {
+    if(searchURL.get(param[0]) === null) {
+      searchURL.set(param[0], param[1])
+    }
+  })
+  console.log(url)
+  const query = `${BASE_URL}${searchURL.toString()}`
   const response = await fetch(query)
   const json = await response.json()
   if(json.results === null){

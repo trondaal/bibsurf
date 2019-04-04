@@ -30,10 +30,10 @@ export const defaultSearchParams = {
   'querytype': 'all',
   'subcollection': '',
   'rankingtype': 'default',
-  'categories': '%7B%7D',
-  'role': '%7B%7D',
   'filtermethod': '',
-  'subtree': 'false'
+  'subtree': 'false',
+  'categories': '{}',
+  'roles': '{}'
 }
 
 export const BASE_URL = "http://dijon.idi.ntnu.no/exist/rest/db/bibsurfbeta/xql/search.xquery?"

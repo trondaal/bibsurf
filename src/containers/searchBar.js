@@ -82,8 +82,7 @@ class SearchBar extends Component {
 const mapStateToProps = (state) => (
   {
     selectedFilters: state.query.selectedFilters,
-    terms: state.query.terms,
-    urlTerms: state.query.urlTerms
+    terms: state.query.terms
   }
 )
 

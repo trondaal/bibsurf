@@ -33,7 +33,6 @@ class FilterCard extends Component {
   }
 
   componentDidUpdate(prevProps) {
-
     if(this.props.url !== prevProps.url) {
       const filterObj = JSON.parse(this.props.url.get(this.props.filterType))
       if(filterObj){

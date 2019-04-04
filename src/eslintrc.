@@ -52,7 +52,6 @@
     "array-bracket-newline":"error",
     "react/sort-comp": "error",
     "react/jsx-closing-bracket-location": "error",
-    "react/jsx-handler-names":"error",
     "react/jsx-sort-props":"error",
     "react/no-deprecated": "warn",
     "lines-between-class-members":"error",

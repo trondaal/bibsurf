@@ -21,12 +21,7 @@ export const setSearchParams = (url) => dispatch => {
   })
 }
 
-/**
- * currentURL is the current url string
- * key is the param that changed
- * value is the new param value
- * changes the url params in props so we can change url from displaycontainer
- */
+
 export const changeSearchParams = (currentURL, key, value) => dispatch => {
   const newURL = new URLSearchParams(`?${currentURL}`)
   if(key === 'displaytype') {
@@ -38,12 +33,12 @@ export const changeSearchParams = (currentURL, key, value) => dispatch => {
     })
   }
   newURL.set(key, value)
-
   dispatch({
     type: NEW_URL,
     payload: newURL
   })
 }
+
 
 export const changeFilterParams = (currentURL, key, value, filterType) => dispatch => {
   const newURL = new URLSearchParams(`?${currentURL.toString()}`)
