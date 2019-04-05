@@ -1,51 +1,46 @@
 import React, {Component} from 'react'
-import {Redirect} from 'react-router-dom'
+
 import {connect} from 'react-redux'
 
 import {FilterList} from './components/SideBarFilter'
 import SearchBar from './containers/searchBar'
 import WorksList from './containers/ResultContainers/WorksList'
 import ManifestationsList from './containers/ResultContainers/ManifestationsList'
-import {urlChanged} from './actions/queryActions'
+import {setSearchParams} from './actions/queryActions'
 
 class DisplayContainer extends Component{
 
-  state = {
-    urlParams: null
-  }
 
   componentDidMount() {
-    this.setState({urlParams: new URLSearchParams(this.props.location.search)})
+    this.props.setSearchParams(this.props.location.search)
   }
 
   componentDidUpdate() {
-    if(this.state.urlParams.toString() !== this.props.location.search.slice(1)){
-      this.props.urlChanged(false)
-      this.props.history.push(`/search?${this.state.urlParams.toString()}`)
+    if(this.props.url.toString() !== this.props.location.search.slice(1)){
+      this.props.history.push(`/search?${this.props.url.toString()}`)
     }
   }
 
   chooseDisplay = () => {
-    switch (this.state.urlParams.get('displaytype')) {
+    switch (this.props.url.get('displaytype')) {
     case "manifestations":
-      return <ManifestationsList url={this.state.urlParams.toString()} />
+      return <ManifestationsList url={this.props.url.toString()} />
     case "works":
-      return (<WorksList url={this.state.urlParams.toString()} />)
+      return (<WorksList url={this.props.url.toString()} />)
     default:
       return this.props.history.push('/')
     }
   }
 
   render() {
-
     return(
       <div className='container'>
-        <div className='nav-bar'>{this.state.urlParams && <SearchBar url={this.state.urlParams} />}</div>
+        <div className='nav-bar'>{this.props.url && <SearchBar url={this.props.url} />}</div>
         <div className='results-container'>
           <div className='filter-container' >
-            <FilterList />
+            <FilterList url={this.props.url} />
           </div>
-          {this.state.urlParams && this.chooseDisplay()}
+          {this.props.url && this.chooseDisplay()}
         </div>
       </div>
     )
@@ -54,8 +49,9 @@ class DisplayContainer extends Component{
 
 const mapStateToProps = (state) => {
   return {
-    url: state.query.urlChanged
+    urlchanged: state.query.urlChanged,
+    url: state.query.url
   }
 }
 
-export default connect(mapStateToProps, {urlChanged})(DisplayContainer)
+export default connect(mapStateToProps, {setSearchParams})(DisplayContainer)

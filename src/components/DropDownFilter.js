@@ -6,7 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import {dropDownFiltersTranslated as translated} from '../constants'
-import {urlChanged, changeDisplay} from '../actions/queryActions'
+import {changeSearchParams} from '../actions/queryActions'
 
 class DropDownFilter extends Component {
   state = {
@@ -17,11 +17,7 @@ class DropDownFilter extends Component {
     this.setState({
       [name]: event.target.value
     })
-    this.props.url.set(translated[this.props.name], event.target.value.toLowerCase())
-    if(this.props.name === 'Display') {
-      this.props.changeDisplay()
-    }
-    this.props.urlChanged(true)
+    this.props.changeSearchParams(this.props.url.toString(), translated[this.props.name], event.target.value.toLowerCase())
   }
 
   //Select the value of the dropown based on the url.
@@ -38,8 +34,6 @@ class DropDownFilter extends Component {
   render() {
 
     const {name, options} = this.props
-
-    const {selected} = this.state
     return (
       <FormControl variant='outlined' style={{width: "10vw"}}>
         <InputLabel
@@ -69,4 +63,4 @@ class DropDownFilter extends Component {
   }
 }
 
-export default connect(null, {urlChanged, changeDisplay})(DropDownFilter)
+export default connect(null, {changeSearchParams})(DropDownFilter)
