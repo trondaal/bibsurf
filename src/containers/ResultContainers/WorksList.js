@@ -5,7 +5,6 @@ import uuid from 'uuid'
 import {newQuery, getNext} from '../../actions/resultActions'
 import Result from '../../components/ResultComponents/Result'
 import {ResultContainer} from './style'
-import {BASE_URL} from '../../constants'
 
 
 class WorksList extends Component {
@@ -33,6 +32,7 @@ class WorksList extends Component {
 
 
   render() {
+    console.log(this.props.resultSize, this.props.results.length)
     if(!this.props.results) {
       return (
         <ResultContainer />

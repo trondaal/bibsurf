@@ -1,5 +1,4 @@
-import {ADD_SEARCH_TERM, REMOVE_SEARCH_TERM, CHANGE_SELECTED_FILTER, URL_CHANGED} from "../constants"
-import { Action } from "rxjs/internal/scheduler/Action";
+import {ADD_SEARCH_TERM, REMOVE_SEARCH_TERM, CHANGE_SELECTED_FILTER, NEW_URL, CHANGE_DISPLAY} from "../constants"
 
 const selectedFilters = {
   "Match": "All",
@@ -9,9 +8,9 @@ const selectedFilters = {
 
 const terms = []
 
-const urlChanged = false
+const url = null
 
-const queryReducer = (state={selectedFilters, terms, urlChanged}, {type, payload}) => {
+const queryReducer = (state={selectedFilters, terms, url}, {type, payload}) => {
   const newState = {...state}
   switch (type) {
   case ADD_SEARCH_TERM:{
@@ -30,13 +29,16 @@ const queryReducer = (state={selectedFilters, terms, urlChanged}, {type, payload
     newState.selectedFilters[key] = payload[key]
     return {...newState}
   }
-
-  case URL_CHANGED:
+  case NEW_URL:
     return {
       ...state,
-      urlChanged: payload
-    } 
-
+      url: payload
+    }
+  case CHANGE_DISPLAY:
+    return {
+      ...state,
+      url: payload
+    }
   default:
     return state
   }

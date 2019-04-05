@@ -11,7 +11,6 @@ import {newQuery} from '../../actions/resultActions'
 class ManifestationsList extends Component {
 
   componentDidMount() {
-    console.log(this.props.results)
     this.props.newQuery(this.props.url)
   }
 
@@ -23,7 +22,7 @@ class ManifestationsList extends Component {
 
   renderManifestations = () => {
     return this.props.results.map((manifestation, index) => {
-      return <ResultDetail detail={manifestation} last={index === this.props.results.length - 1} key={uuid()} />;
+      return <ResultDetail detail={manifestation} last={index === this.props.results.length - 1} key={uuid()} />
     })
   }
 

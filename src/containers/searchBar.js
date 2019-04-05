@@ -6,7 +6,7 @@ import {TextField, Chip, IconButton} from '@material-ui/core'
 import {dropDownFilters as filter} from '../constants'
 import DropDownFilter from '../components/DropDownFilter'
 import {addSearchTerm, removeSearchTerm, changeSelectedFilter, newQuery} from '../actions'
-import {urlChanged} from '../actions/queryActions'
+import {changeSearchParams} from '../actions/queryActions'
 
 class SearchBar extends Component {
   state = {
@@ -33,25 +33,16 @@ class SearchBar extends Component {
   }
 
   removeSearchTerm = term => {
-    console.log(term)
     const newTerms = this.props.url.get('query').split(' ').filter(queryTerm => queryTerm !== term)
-    console.log(newTerms.join(' '))
-    this.props.url.set('query', newTerms.join(' '))
-    this.props.urlChanged(true)
+    this.props.changeSearchParams(this.props.url.toString(), 'query', newTerms.join(' '))
   }
 
   handleSearch = () => {
-
     if(this.state.currentSearch){
-      /*await this.props.addSearchTerm(searchTerm)
-      this.props.newQuery(this.props.terms, this.props.selectedFilters)*/
       const currentQuery = this.props.url.get('query')
       const newQuery = currentQuery === null ? this.state.currentSearch : `${currentQuery} ${this.state.currentSearch}`
-
+      this.props.changeSearchParams(this.props.url.toString(), 'query', newQuery)
       this.setState({currentSearch: ""})
-      this.props.url.set('query', newQuery)
-
-      this.props.urlChanged(true)
     }
   }
 
@@ -91,9 +82,8 @@ class SearchBar extends Component {
 const mapStateToProps = (state) => (
   {
     selectedFilters: state.query.selectedFilters,
-    terms: state.query.terms,
-    urlTerms: state.query.urlTerms
+    terms: state.query.terms
   }
 )
 
-export default connect(mapStateToProps, {newQuery, addSearchTerm, removeSearchTerm, changeSelectedFilter, urlChanged})(SearchBar)
+export default connect(mapStateToProps, {newQuery, addSearchTerm, removeSearchTerm, changeSelectedFilter, changeSearchParams})(SearchBar)
