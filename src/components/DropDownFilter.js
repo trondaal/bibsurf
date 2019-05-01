@@ -6,7 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import {dropDownFiltersTranslated as translated} from '../constants'
-import {changeSearchParams} from '../actions/queryActions'
+import {changeSearchParams} from '../actions'
 
 class DropDownFilter extends Component {
   state = {

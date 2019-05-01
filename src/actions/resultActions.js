@@ -6,7 +6,8 @@ import {INIT_SEARCH,
   BASE_URL,
   NO_RESULTS,
   ONE_RESULT,
-  defaultSearchParams} from '../constants'
+  defaultSearchParams,
+  GET_DETAILS_OF_MANIFESTATION} from '../constants'
 import axios from 'axios'
 
 
@@ -23,7 +24,7 @@ export const newQuery = url => async dispatch => {
   const query = `${BASE_URL}${searchURL.toString()}`
   const response = await fetch(query)
   const json = await response.json()
-  console.log(json)
+
   if(json.results === null){
     return (
       dispatch({
@@ -47,10 +48,10 @@ export const newQuery = url => async dispatch => {
 
 export const getNext = (next) => async dispatch => {
   dispatch({type: INIT_SEARCH})
-  console.log(next)
+
   const response = await fetch(next)
   const data = await response.json()
-  console.log(data)
+
   if(data === null){
     dispatch({type: NO_RESULTS})
   }
@@ -72,5 +73,14 @@ export const getRelatedWorks = (workId) => dispatch => {
     })
   }).catch(err => {
     console.log(err)
+  })
+}
+
+export const getDetailsOfManifestation = (manifestationId) => async dispatch => {
+  const response = await fetch(`http://dijon.idi.ntnu.no/exist/rest/db/bibsurfbeta/xql/contents.xquery?manifestationid=${manifestationId}`)
+  const json = await response.json()
+  dispatch({
+    type: GET_DETAILS_OF_MANIFESTATION,
+    payload: {'manifestationId': manifestationId, detail: json}
   })
 }

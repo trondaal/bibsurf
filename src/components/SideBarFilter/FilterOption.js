@@ -8,7 +8,7 @@ import {
   Radio
 } from '@material-ui/core'
 
-import {changeSearchParams} from '../../actions/queryActions'
+import {changeSearchParams} from '../../actions'
 
 class FilterOption extends Component {
 
@@ -17,10 +17,9 @@ class FilterOption extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.url)
+
     if(this.props.url) {
       const filterMethod = this.props.url.get('filtermethod')
-      console.log(filterMethod)
       if(filterMethod !== null) {
         this.setState({
           value: filterMethod.toUpperCase()

@@ -10,8 +10,8 @@ import {ExpansionPanel,
 } from '@material-ui/core'
 
 import {translations} from '../../constants'
-import {capitalizeFirstLetter} from '../../functions/functions'
-import {changeFilterParams} from '../../actions/queryActions'
+import {capitalize} from '../../utils'
+import {changeFilterParams} from '../../actions'
 
 
 class FilterCard extends Component {
@@ -53,7 +53,7 @@ class FilterCard extends Component {
   renderControlLabels = () => {
     const sortedOptions = Object.entries(this.props.options)
     sortedOptions.sort((a, b) => b[1] - a[1])
-    return sortedOptions.slice(0,6).map(o => o.join(' ')).map((value, i) => <FormControlLabel key={i} value={value.split(' ').slice(0,-1).join(' ')} control={<Radio />} label={capitalizeFirstLetter(value)} />)
+    return sortedOptions.slice(0,6).map(o => o.join(' ')).map((value, i) => <FormControlLabel key={i} value={value.split(' ').slice(0,-1).join(' ')} control={<Radio />} label={capitalize(value)} />)
   }
 
   getValues = () => {

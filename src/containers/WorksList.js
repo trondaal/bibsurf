@@ -3,10 +3,9 @@ import {connect} from 'react-redux'
 import uuid from 'uuid'
 import BottomScrollListener from 'react-bottom-scroll-listener'
 
-import {newQuery, getNext} from '../../actions/resultActions'
-import Result from '../../components/ResultComponents/Result'
+import {newQuery, getNext} from '../actions'
+import {Result, LoaderIcon} from '../components/ResultComponents'
 import {ResultContainer} from './style'
-import {LoaderIcon} from '../../components/ResultComponents/LoaderIcon'
 
 
 class WorksList extends Component {
@@ -49,7 +48,7 @@ class WorksList extends Component {
         <BottomScrollListener onBottom={this.handleGetNext} debounce={500}>
           {this.renderResults()}
         </BottomScrollListener>
-        {this.props.loading && <p>laster inn resultater</p>}
+        {this.props.loading && <LoaderIcon />}
       </ResultContainer>
     )
   }

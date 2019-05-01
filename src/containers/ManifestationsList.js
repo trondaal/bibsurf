@@ -3,9 +3,9 @@ import {connect} from 'react-redux'
 import uuid from 'uuid'
 
 import {ResultContainer} from './style'
-import {ResultDiv} from '../../components/ResultComponents/style'
-import {ResultDetail} from '../../components/ResultComponents/ResultDetail'
-import {newQuery} from '../../actions/resultActions'
+import {ResultDiv} from '../components/ResultComponents/style'
+import {ResultDetail, LoaderIcon} from '../components/ResultComponents'
+import {newQuery} from '../actions'
 
 
 class ManifestationsList extends Component {
@@ -29,11 +29,12 @@ class ManifestationsList extends Component {
   render() {
     return(
       <ResultContainer>
-        {this.props.results &&
+        {this.props.results.length > 0 &&
         <ResultDiv style={{alignItems: 'center'}}>
           {this.renderManifestations()}
         </ResultDiv>
         }
+        {this.props.loading && <LoaderIcon />}
       </ResultContainer>
     )
   }
@@ -41,7 +42,8 @@ class ManifestationsList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    results: state.result.results
+    results: state.result.results,
+    loading: state.result.loading
   }
 }
 

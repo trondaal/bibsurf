@@ -1,16 +1,13 @@
+/* eslint-disable react/jsx-closing-bracket-location */
 /* eslint-disable react/jsx-handler-names */
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import uuid from 'uuid'
 
-import {ResultDetail} from './ResultDetail'
-import {RelatedWorks} from './RelatedWorks'
-import Title from './Title'
+import {ResultDetail, RelatedWorks, Title} from '.'
 import {ResultDiv,WorkTitleDiv,TabBarDiv,TabButton, DetailContainer} from './style.js'
-import {capitalizeFirstLetter} from '../../functions/functions'
-
-
-import {getRelatedWorks} from '../../actions/resultActions'
+import {getRelatedWorks} from '../../actions'
+import {capitalize} from '../../utils'
 
 class Result extends Component {
 
@@ -51,7 +48,7 @@ class Result extends Component {
       else{
         const tabs = []
         this.props.result.expressionOfWork.forEach(expression => {
-          const type = capitalizeFirstLetter(`${expression.contentType} (${expression.languageOfExpression})`)
+          const type = capitalize(`${expression.contentType} (${expression.languageOfExpression})`)
           if(!tabs.some(tab => (tab.tabTitle === type))){
             tabs.push({
               tabTitle: type,
@@ -98,7 +95,7 @@ class Result extends Component {
       const {result, type} = this.props
       const tabs = this.getTabs()
       let related = null
-      if(type === 'expressions'){
+      if(type === 'expressions' && result !== null){
         related = result.workExpressed.related !== undefined ? {'tabTitle': 'Related works'} : null
       }else{
         related = result['related'] !== undefined ? {tabTitle: 'Related works'} : null

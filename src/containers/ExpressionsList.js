@@ -3,9 +3,9 @@ import {connect} from 'react-redux'
 import uuid from 'uuid'
 
 
-import {newQuery} from '../../actions/resultActions'
-import Result from '../../components/ResultComponents/Result'
-import {ResultDetail} from '../../components/ResultComponents/ResultDetail'
+import {newQuery} from '../actions'
+import {Result, LoaderIcon} from '../components/ResultComponents'
+
 import {ResultContainer} from './style'
 
 class ExpressionsList extends Component {
@@ -30,6 +30,7 @@ class ExpressionsList extends Component {
     return (
       <ResultContainer>
         {this.renderExpressions()}
+        {this.props.loading && <LoaderIcon />}
       </ResultContainer>
     )
   }

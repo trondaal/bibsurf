@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {clearFilters} from '../../actions/queryActions'
+import {clearFilters} from '../../actions'
 
 import {FilterCard, FilterOption} from '.'
 

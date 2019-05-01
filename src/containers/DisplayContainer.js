@@ -2,12 +2,9 @@ import React, {Component} from 'react'
 
 import {connect} from 'react-redux'
 
-import {FilterList} from './components/SideBarFilter'
-import SearchBar from './containers/searchBar'
-import WorksList from './containers/ResultContainers/WorksList'
-import ManifestationsList from './containers/ResultContainers/ManifestationsList'
-import ExpressionsList from './containers/ResultContainers/ExpressionsList'
-import {setSearchParams} from './actions/queryActions'
+import {FilterList} from '../components/SideBarFilter'
+import {WorksList, ManifestationsList, ExpressionsList, SearchBar} from '.'
+import {setSearchParams} from '../actions'
 
 class DisplayContainer extends Component{
 

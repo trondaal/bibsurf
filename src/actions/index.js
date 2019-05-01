@@ -1,4 +1,11 @@
-import {addSearchTerm, removeSearchTerm, changeSelectedFilter} from './queryActions'
-import {newQuery} from './resultActions'
+import {setSearchParams, changeSearchParams, changeFilterParams, clearFilters} from './queryActions'
+import {newQuery, getNext, getRelatedWorks, getDetailsOfManifestation} from './resultActions'
 
-export {addSearchTerm, removeSearchTerm, changeSelectedFilter, newQuery}
+export {setSearchParams,
+  changeSearchParams,
+  changeFilterParams,
+  clearFilters,
+  newQuery,
+  getNext,
+  getRelatedWorks,
+  getDetailsOfManifestation}
