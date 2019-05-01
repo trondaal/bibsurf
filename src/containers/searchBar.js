@@ -51,7 +51,7 @@ class SearchBar extends Component {
 
   createChips = () => (
     this.props.url.get('query').split(' ').map((term, i) =>
-      <Chip key={i} label={term} variant='outlined' color='primary' onDelete={() => this.removeSearchTerm(term)} />)
+      term === '' ? null : <Chip key={i} label={term} variant='outlined' color='primary' onDelete={() => this.removeSearchTerm(term)} />)
   )
 
 

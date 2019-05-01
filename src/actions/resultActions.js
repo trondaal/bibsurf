@@ -20,10 +20,10 @@ export const newQuery = url => async dispatch => {
       searchURL.set(param[0], param[1])
     }
   })
-  console.log(url)
   const query = `${BASE_URL}${searchURL.toString()}`
   const response = await fetch(query)
   const json = await response.json()
+  console.log(json)
   if(json.results === null){
     return (
       dispatch({
@@ -45,13 +45,22 @@ export const newQuery = url => async dispatch => {
   )
 }
 
-export const getNext = (next) => dispatch => {
-  return axios.get(next).then(res => {
+export const getNext = (next) => async dispatch => {
+  dispatch({type: INIT_SEARCH})
+  console.log(next)
+  const response = await fetch(next)
+  const data = await response.json()
+  console.log(data)
+  if(data === null){
+    dispatch({type: NO_RESULTS})
+  }
+  else{
     dispatch({
       type: GET_NEXT,
-      payload: res.data
+      payload: data
     })
-  })
+  }
+
 }
 
 export const getRelatedWorks = (workId) => dispatch => {

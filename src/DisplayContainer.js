@@ -6,6 +6,7 @@ import {FilterList} from './components/SideBarFilter'
 import SearchBar from './containers/searchBar'
 import WorksList from './containers/ResultContainers/WorksList'
 import ManifestationsList from './containers/ResultContainers/ManifestationsList'
+import ExpressionsList from './containers/ResultContainers/ExpressionsList'
 import {setSearchParams} from './actions/queryActions'
 
 class DisplayContainer extends Component{
@@ -27,6 +28,8 @@ class DisplayContainer extends Component{
       return <ManifestationsList url={this.props.url.toString()} />
     case "works":
       return (<WorksList url={this.props.url.toString()} />)
+    case "expressions":
+      return (<ExpressionsList url={this.props.url.toString()} />)
     default:
       return this.props.history.push('/')
     }

@@ -1,10 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import uuid from 'uuid'
+import BottomScrollListener from 'react-bottom-scroll-listener'
 
 import {newQuery, getNext} from '../../actions/resultActions'
 import Result from '../../components/ResultComponents/Result'
 import {ResultContainer} from './style'
+import {LoaderIcon} from '../../components/ResultComponents/LoaderIcon'
 
 
 class WorksList extends Component {
@@ -22,17 +24,21 @@ class WorksList extends Component {
 
   renderResults = () => {
     return this.props.results.map(result => {
-      return <Result result={result} key={uuid()} />
+      return <Result result={result} key={uuid()} type='work' />
     })
   }
 
   handleGetNext = () => {
-    this.props.getNext(this.props.next)
+    console.log(this.props.resultSize, this.props.results.length)
+    console.log(this.props.results.length === this.props.resultSize)
+    if(!this.props.loading || this.props.results.length !== this.props.resultSize){
+      this.props.getNext(this.props.next)
+    }
   }
 
 
   render() {
-    console.log(this.props.resultSize, this.props.results.length)
+
     if(!this.props.results) {
       return (
         <ResultContainer />
@@ -40,8 +46,10 @@ class WorksList extends Component {
     }
     return (
       <ResultContainer>
-        {this.renderResults()}
-        {this.props.results.length !== this.props.resultSize && <button onClick={this.handleGetNext}>Get more result</button>}
+        <BottomScrollListener onBottom={this.handleGetNext} debounce={500}>
+          {this.renderResults()}
+        </BottomScrollListener>
+        {this.props.loading && <p>laster inn resultater</p>}
       </ResultContainer>
     )
   }
@@ -51,14 +59,15 @@ const mapStateToProps = (state) => {
   return {
     results: state.result.results,
     next: state.result.next,
-    resultSize: state.result.resultSize
+    resultSize: state.result.resultSize,
+    loading: state.result.loading
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     newQuery: (url) => dispatch(newQuery(url)),
-    getNext: (next) => dispatch(getNext(next))
+    getNext: (next) => dispatch(getNext(next)) 
   }
 }
 

@@ -43,10 +43,11 @@ const resultReducer = (state = initState, action) => {
   case GET_NEXT:
     return{
       ...state,
-      results: [...state.results, ...action.payload]
+      results: [...state.results, ...action.payload],
+      loading: false
     }
   case NO_RESULTS:
-    return initState
+    return {...state, loading: false}
 
   case CHANGE_DISPLAY:
     return initState

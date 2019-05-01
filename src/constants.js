@@ -1,13 +1,15 @@
 export const dropDownFilters = {
   Match: ['All', 'Any', 'Phrase', 'Near'],
   Display: ['Works', 'Expressions', 'Manifestations' ],
-  Ranking: ['Default', 'Entity hits', 'Publications #']
+  Ranking: ['Default', 'Entity hits', 'Publications #'],
+  Subtree: ['False', 'True']
 }
 
 export const dropDownFiltersTranslated = {
   Match: 'querytype',
   Display: 'displaytype',
-  Ranking: 'rankingtype'
+  Ranking: 'rankingtype',
+  Subtree: 'subtree'
 }
 
 export const translations = {
