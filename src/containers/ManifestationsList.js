@@ -4,7 +4,7 @@ import uuid from 'uuid'
 
 import {ResultContainer} from './style'
 import {ResultDiv} from '../components/ResultComponents/style'
-import {ResultDetail, LoaderIcon} from '../components/ResultComponents'
+import {Manifestation, LoaderIcon} from '../components/ResultComponents'
 import {newQuery} from '../actions'
 
 
@@ -22,7 +22,7 @@ class ManifestationsList extends Component {
 
   renderManifestations = () => {
     return this.props.results.map((manifestation, index) => {
-      return <ResultDetail detail={manifestation} last={index === this.props.results.length - 1} key={uuid()} />
+      return <Manifestation detail={manifestation} last={index === this.props.results.length - 1} key={uuid()} />
     })
   }
 

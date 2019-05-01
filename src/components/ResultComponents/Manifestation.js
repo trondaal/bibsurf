@@ -6,7 +6,7 @@ import {DetailDiv} from './style'
 import {getDetailsOfManifestation} from '../../actions'
 import {Title} from '.'
 
-class ResultDetail extends Component {
+class Manifestation extends Component {
 
   state = {
     toggled: false
@@ -77,4 +77,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {getDetailsOfManifestation})(ResultDetail)
+export default connect(mapStateToProps, {getDetailsOfManifestation})(Manifestation)

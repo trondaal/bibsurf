@@ -4,8 +4,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import uuid from 'uuid'
 
-import {ResultDetail, RelatedWorks, Title} from '.'
-import {ResultDiv,WorkTitleDiv,TabBarDiv,TabButton, DetailContainer} from './style.js'
+import {Manifestation, RelatedWorks, Title} from '.'
+import {ResultDiv, WorkTitleDiv, TabBarDiv, TabButton, DetailContainer} from './style.js'
 import {getRelatedWorks} from '../../actions'
 import {capitalize} from '../../utils'
 
@@ -83,7 +83,7 @@ class Result extends Component {
       }
       else{
         return activeTab.manifestations.map((manifestation, i) => {
-          return <ResultDetail detail={manifestation}
+          return <Manifestation detail={manifestation}
             last={i === activeTab.manifestations.length - 1}
             key={uuid()}
           />

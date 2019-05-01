@@ -28,8 +28,6 @@ class WorksList extends Component {
   }
 
   handleGetNext = () => {
-    console.log(this.props.resultSize, this.props.results.length)
-    console.log(this.props.results.length === this.props.resultSize)
     if(!this.props.loading || this.props.results.length !== this.props.resultSize){
       this.props.getNext(this.props.next)
     }
@@ -66,7 +64,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     newQuery: (url) => dispatch(newQuery(url)),
-    getNext: (next) => dispatch(getNext(next)) 
+    getNext: (next) => dispatch(getNext(next))
   }
 }
 
