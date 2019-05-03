@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
+
 import {connect} from 'react-redux'
 import {TextField, Chip, IconButton} from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'
 
 import {dropDownFilters as filter} from '../constants'
 import DropDownFilter from '../components/DropDownFilter'
-import {addSearchTerm, removeSearchTerm, changeSelectedFilter, newQuery} from '../actions'
-import {changeSearchParams} from '../actions/queryActions'
+
+import {changeSearchParams} from '../actions'
 
 class SearchBar extends Component {
   state = {
@@ -88,9 +89,8 @@ class SearchBar extends Component {
 
 const mapStateToProps = (state) => (
   {
-    selectedFilters: state.query.selectedFilters,
     terms: state.query.terms
   }
 )
 
-export default connect(mapStateToProps, {newQuery, addSearchTerm, removeSearchTerm, changeSelectedFilter, changeSearchParams})(SearchBar)
+export default connect(mapStateToProps, {changeSearchParams})(SearchBar)

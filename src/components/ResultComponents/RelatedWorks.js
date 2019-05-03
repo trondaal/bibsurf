@@ -1,10 +1,10 @@
 import React from 'react'
 import uuid from 'uuid'
 
-import {formatCamelCase} from '../../functions/functions'
+import {formatCamelCase} from '../../utils'
 import {DetailDiv} from './style'
 
-export const RelatedWorks = (props) => {
+const RelatedWorks = (props) => {
   const getWork = () => {
     return Object.keys(props.relation.relations).map((key) => {
       const title = formatCamelCase(key)
@@ -30,3 +30,5 @@ export const RelatedWorks = (props) => {
     </DetailDiv>
   )
 }
+
+export default RelatedWorks

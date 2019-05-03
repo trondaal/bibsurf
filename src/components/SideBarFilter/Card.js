@@ -6,13 +6,12 @@ import {ExpansionPanel,
   ExpansionPanelDetails,
   RadioGroup,
   FormControlLabel,
-  Radio,
-  Paper
+  Radio
 } from '@material-ui/core'
 
 import {translations} from '../../constants'
-import {capitalizeFirstLetter} from '../../functions/functions'
-import {changeFilterParams} from '../../actions/queryActions'
+import {capitalize} from '../../utils'
+import {changeFilterParams} from '../../actions'
 
 
 class FilterCard extends Component {
@@ -54,7 +53,7 @@ class FilterCard extends Component {
   renderControlLabels = () => {
     const sortedOptions = Object.entries(this.props.options)
     sortedOptions.sort((a, b) => b[1] - a[1])
-    return sortedOptions.slice(0,6).map(o => o.join(' ')).map((value, i) => <FormControlLabel key={i} value={value.split(' ').slice(0,-1).join(' ')} control={<Radio />} label={capitalizeFirstLetter(value)} />)
+    return sortedOptions.slice(0,6).map(o => o.join(' ')).map((value, i) => <FormControlLabel key={i} value={value.split(' ').slice(0,-1).join(' ')} control={<Radio />} label={capitalize(value)} />)
   }
 
   getValues = () => {
@@ -70,39 +69,21 @@ class FilterCard extends Component {
 
   render() {
     return (
-      this.props.other && this.props.other === 'constant' ?
-      // Renders the constant filter options panel
-      // using <Paper /> instead of <ExpansionPanel />
-        <Paper className='sidebar-filter'>
-          <div style={{marginLeft: 20}}>
-            <Typography>{this.props.title}</Typography>
-            <RadioGroup
-              aria-label='Gender'
-              name='gender1'
-              value={this.state.value}
-              onChange={this.handleChange}
-            >
-              {Object.entries(this.props.options).map(o => o.join(" ")).map((l, i) => <FormControlLabel key={i} value={l} control={<Radio />} label={l} />)}
-            </RadioGroup>
-          </div>
-        </Paper>
-        :
-        // Renders every other panel
-        <ExpansionPanel className='sidebar-filter'>
-          <ExpansionPanelSummary>
-            <Typography>{translations[this.props.title]}</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <RadioGroup
-              aria-label='Gender'
-              name='gender1'
-              value={this.state.value}
-              onChange={this.handleChange}
-            >
-              {this.renderControlLabels()}
-            </RadioGroup>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+      <ExpansionPanel>
+        <ExpansionPanelSummary>
+          <Typography>{translations[this.props.title]}</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <RadioGroup
+            aria-label='Gender'
+            name='gender1'
+            value={this.state.value}
+            onChange={this.handleChange}
+          >
+            {this.renderControlLabels()}
+          </RadioGroup>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
     )
   }
 }
