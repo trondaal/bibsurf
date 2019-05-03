@@ -40,8 +40,7 @@ class FilterOption extends Component {
         <div style={{marginLeft: 20}}>
           <Typography>{this.props.title}</Typography>
           <RadioGroup
-            aria-label='Gender'
-            name='gender1'
+            name={this.props.title}
             value={this.state.value}
             onChange={this.handleChange}
           >
