@@ -6,6 +6,7 @@ import {ResultDetail} from './ResultDetail'
 import {RelatedWorks} from './RelatedWorks'
 import {ResultDiv,WorkTitleDiv,TabBarDiv,TabButton, DetailContainer} from './style.js'
 import {capitalizeFirstLetter} from '../../functions/functions'
+import {Paper, Typography, Button} from '@material-ui/core'
 
 
 import {getRelatedWorks} from '../../actions/resultActions'
