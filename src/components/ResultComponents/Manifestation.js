@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 
 import {DetailDiv} from './style'
 import {getDetailsOfManifestation} from '../../actions'
-import {Title} from '.'
+import {Title, LoaderIcon} from '.'
 
 class Manifestation extends Component {
 
@@ -30,7 +30,7 @@ class Manifestation extends Component {
     const {about} = this.props.detail
     const manifestation = this.props.manifestationsDetails.filter(detail => detail.manifestationId === about)[0]
     if(!manifestation) {
-      return
+      return <LoaderIcon style={{'width': '10px', 'height': '10px'}}/>
     }else{
       const {detail} = manifestation
       return (

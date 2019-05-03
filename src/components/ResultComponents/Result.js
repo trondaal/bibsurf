@@ -104,15 +104,21 @@ class Result extends Component {
       return (
         <ResultDiv>
           <WorkTitleDiv>
-            <span>
-              <h4 style={{'color': '#0039e6'}}>
-                {type === 'expressions' ? result.title : result.titleOfWork[0]} /
-                <Title result={result} />
-                <span style={{'color': 'lightgrey'}}> [{type === 'expressions' ?
-                  `${result.workExpressed.formOfWork} - ${result.languageOfExpression} - ${result.contentType}`
-                  : result.formOfWork}]</span>
-              </h4>
-            </span>
+            <div>
+              <span>
+                <h4 style={{'color': '#0039e6'}}>
+                  {type === 'expressions' ? result.title : result.titleOfWork[0]} /
+                  <Title result={result} />
+                  <span style={{'color': 'lightgrey'}}> [{type === 'expressions' ?
+                    `${result.workExpressed.formOfWork} - ${result.languageOfExpression} - ${result.contentType}`
+                    : result.formOfWork}]</span>
+                </h4>
+              </span>
+            </div>
+            <div style={{'paddingTop': '10px', 'width': '10%', 'paddingRight': '5px'}}>
+              <a className={"graph-anchor"} href={`http://dijon.idi.ntnu.no//exist/rest/db/bibsurfbeta/xql/rdf.xquery?id=${this.props.result.about}`}>rdf</a>
+              <a className={"graph-anchor"} href={`http://dijon.idi.ntnu.no//exist/rest/db/bibsurfbeta/xql/visualization.xquery?id=${this.props.result.about}`}>graph</a>
+            </div>
           </WorkTitleDiv>
           <TabBarDiv>
             {tabs.map(tab => {
