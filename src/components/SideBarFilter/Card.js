@@ -6,17 +6,17 @@ import {ExpansionPanel,
   ExpansionPanelDetails,
   RadioGroup,
   FormControlLabel,
-  Radio
+  Radio,
+  Button
 } from '@material-ui/core'
 
 import {translations} from '../../constants'
 import {capitalize} from '../../utils'
 import {changeFilterParams} from '../../actions'
-
-
 class FilterCard extends Component {
   state = {
-    value: 'AND'
+    value: 'AND',
+    expanded: false
   }
 
   componentDidMount() {
@@ -45,15 +45,22 @@ class FilterCard extends Component {
     }
   }
 
+  toggleExpanded = () => {
+    this.setState({
+      expanded: !this.state.expanded
+    })
+  }
+
   handleChange = event => {
     this.setState({value: event.target.value})
     this.props.changeFilterParams(this.props.url, this.props.title, event.target.value, this.props.filterType)
   }
 
-  renderControlLabels = () => {
+
+  renderControlLabels = elements => {
     const sortedOptions = Object.entries(this.props.options)
     sortedOptions.sort((a, b) => b[1] - a[1])
-    return sortedOptions.slice(0,6).map(o => o.join(' ')).map((value, i) => <FormControlLabel key={i} value={value.split(' ').slice(0,-1).join(' ')} control={<Radio />} label={capitalize(value)} />)
+    return sortedOptions.slice(0,elements).map(o => o.join(' ')).map((value, i) => <FormControlLabel key={i} value={value.split(' ').slice(0,-1).join(' ')} control={<Radio />} label={capitalize(value)} />)
   }
 
   getValues = () => {
@@ -68,19 +75,37 @@ class FilterCard extends Component {
 
 
   render() {
+    const {value, expanded} = this.state
+    const optionLength = Object.entries(this.props.options).length
     return (
-      <ExpansionPanel>
+      <ExpansionPanel style={{/* root: {
+        expanded: {
+          backgroundColor: "blue"
+        }
+      } */
+        //backgroundColor: "red"
+      }}
+      >
         <ExpansionPanelSummary>
           <Typography>{translations[this.props.title]}</Typography>
         </ExpansionPanelSummary>
+        {}
         <ExpansionPanelDetails>
           <RadioGroup
             aria-label='Gender'
             name='gender1'
-            value={this.state.value}
+            value={value}
             onChange={this.handleChange}
           >
-            {this.renderControlLabels()}
+            {expanded ? this.renderControlLabels(optionLength) : this.renderControlLabels(6)}
+            {optionLength > 6 ?
+              <Button
+                variant={"contained"}
+                style={{backgroundColor: "#edeeef"}}
+                onClick={() => this.toggleExpanded()}
+              >
+                {expanded ? "Show less" : "Show more"}
+              </Button> : null}
           </RadioGroup>
         </ExpansionPanelDetails>
       </ExpansionPanel>
