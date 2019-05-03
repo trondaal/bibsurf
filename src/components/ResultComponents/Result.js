@@ -116,8 +116,8 @@ class Result extends Component {
               </span>
             </div>
             <div style={{'paddingTop': '10px', 'width': '10%', 'paddingRight': '5px'}}>
-              <a className={"graph-anchor"} href={`http://dijon.idi.ntnu.no//exist/rest/db/bibsurfbeta/xql/rdf.xquery?id=${this.props.result.about}`}>rdf</a>
-              <a className={"graph-anchor"} href={`http://dijon.idi.ntnu.no//exist/rest/db/bibsurfbeta/xql/visualization.xquery?id=${this.props.result.about}`}>graph</a>
+              <a className={"graph-anchor"} href={`http://dijon.idi.ntnu.no//exist/rest/db/bibsurfbeta/xql/rdf.xquery?id=${this.props.result.about}`} target={"_blank"}>rdf</a>
+              <a className={"graph-anchor"} href={`http://dijon.idi.ntnu.no//exist/rest/db/bibsurfbeta/xql/visualization.xquery?id=${this.props.result.about}`} target={"_blank"}>graph</a>
             </div>
           </WorkTitleDiv>
           <TabBarDiv>
