@@ -73,7 +73,7 @@ class FilterCard extends Component {
       this.props.other && this.props.other === 'constant' ?
       // Renders the constant filter options panel
       // using <Paper /> instead of <ExpansionPanel />
-        <Paper>
+        <Paper className='sidebar-filter'>
           <div style={{marginLeft: 20}}>
             <Typography>{this.props.title}</Typography>
             <RadioGroup
@@ -88,7 +88,7 @@ class FilterCard extends Component {
         </Paper>
         :
         // Renders every other panel
-        <ExpansionPanel>
+        <ExpansionPanel className='sidebar-filter'>
           <ExpansionPanelSummary>
             <Typography>{translations[this.props.title]}</Typography>
           </ExpansionPanelSummary>

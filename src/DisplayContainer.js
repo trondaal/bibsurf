@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
 import {FilterList} from './components/SideBarFilter'
-import SearchBar from './containers/searchBar'
+import SearchBar from './containers/SearchBar'
 import WorksList from './containers/ResultContainers/WorksList'
 import ManifestationsList from './containers/ResultContainers/ManifestationsList'
 import {setSearchParams} from './actions/queryActions'

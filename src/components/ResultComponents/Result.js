@@ -89,8 +89,8 @@ class Result extends Component {
       const related = result['related'] !== undefined ? {'tabTitle': 'Related works'}: null
       const tabManifestations = this.state.activeTab ? tabs.filter(tab => (tab.tabTitle === this.state.activeTab))[0] : null
       return (
-        <ResultDiv>
-          <WorkTitleDiv><h3>{result.titleOfWork[0]} /</h3></WorkTitleDiv>
+        <Paper className='result-div'>
+          <Typography variant='h6'>{`${title} [${result.formOfWork[0]}]`}</Typography>
           <TabBarDiv>
             {tabs.map(tab => {
               return <TabButton
@@ -98,19 +98,19 @@ class Result extends Component {
                 id={tab.tabTitle}
                 key={uuid()}
                 active={tab.tabTitle === this.state.activeTab && this.state.toggled}
-              >{tab.tabTitle}</TabButton>
+                     >{tab.tabTitle}</TabButton>
             })}
             {related !== null && <TabButton
               onClick={this.getRelatedWorks}
               id={related.tabTitle}
               active={related.tabTitle === this.state.activeTab && this.state.toggled}
-            >{related.tabTitle}</TabButton>}
+                                 >{related.tabTitle}</TabButton>}
           </TabBarDiv>
           {this.state.toggled &&
             <DetailContainer>
               {this.getManifestationsOfTab(this.state.activeTab === 'Related works' ? related: tabManifestations)}
             </DetailContainer>}
-        </ResultDiv>
+        </Paper>
       )
     }
 }
