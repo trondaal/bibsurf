@@ -20,6 +20,9 @@ export const WorkTitleDiv = styled.div`
   padding-left: 10px;
   padding-right: 0px;
   width: calc(100% - 10px);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `
 
 export const TabBarDiv = styled.div`

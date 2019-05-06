@@ -1,8 +1,9 @@
-import {INIT_SEARCH, NEW_QUERY, GET_RELATED_WORKS, GET_NEXT, NO_RESULTS, CHANGE_DISPLAY, ONE_RESULT} from '../constants'
+import {INIT_SEARCH, NEW_QUERY, GET_RELATED_WORKS, GET_NEXT, NO_RESULTS, CHANGE_DISPLAY, ONE_RESULT, GET_DETAILS_OF_MANIFESTATION} from '../constants'
 
 const initState = {
   results: [],
-  related: []
+  related: [],
+  manifestationsDetails: []
 }
 
 
@@ -43,13 +44,19 @@ const resultReducer = (state = initState, action) => {
   case GET_NEXT:
     return{
       ...state,
-      results: [...state.results, ...action.payload]
+      results: [...state.results, ...action.payload],
+      loading: false
     }
   case NO_RESULTS:
-    return initState
+    return {...state, loading: false}
 
   case CHANGE_DISPLAY:
     return initState
+  case GET_DETAILS_OF_MANIFESTATION:
+    return {
+      ...state,
+      manifestationsDetails: [...state.manifestationsDetails, action.payload]
+    }
   default:
     return state
   }

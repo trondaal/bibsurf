@@ -1,13 +1,15 @@
 export const dropDownFilters = {
   Match: ['All', 'Any', 'Phrase', 'Near'],
   Display: ['Works', 'Expressions', 'Manifestations' ],
-  Ranking: ['Default', 'Entity hits', 'Publications #']
+  Ranking: ['Default', 'Entity hits', 'Publications #'],
+  Subtree: ['False', 'True']
 }
 
 export const dropDownFiltersTranslated = {
   Match: 'querytype',
   Display: 'displaytype',
-  Ranking: 'rankingtype'
+  Ranking: 'rankingtype',
+  Subtree: 'subtree'
 }
 
 export const translations = {
@@ -27,6 +29,7 @@ export const translations = {
 }
 
 export const defaultSearchParams = {
+  'displaytype': 'works',
   'querytype': 'all',
   'subcollection': '',
   'rankingtype': 'default',
@@ -53,3 +56,4 @@ export const NO_RESULTS = "NO_RESULTS"
 export const CHANGE_DISPLAY ="CHANGE_DISPLAY"
 export const NEW_URL = "NEW_URL"
 export const ONE_RESULT = "ONE_RESULT"
+export const GET_DETAILS_OF_MANIFESTATION = "GET_DETAIL_OF_MANIFESTATION"

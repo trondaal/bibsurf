@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {clearFilters} from '../../actions/queryActions'
+import {clearFilters} from '../../actions'
 
-import {FilterCard} from '.'
+import {FilterCard, FilterOption} from '.'
 
 
 class FilterList extends Component {
+
 
   clearFilters = () => {
     this.props.clearFilters(this.props.url)
@@ -13,9 +14,10 @@ class FilterList extends Component {
 
   render() {
     const {categories, roles} = this.props
+
     return (
       <div>
-        <FilterCard title='Filter options' options={{AND: "", OR: "", ANDOR: "", "Filter subtree": ""}} other='constant' url={this.props.url} />
+        <FilterOption title='Filter options' options={{AND: '', OR: '', ANDOR: ''}} url={this.props.url} />
         {categories && Object.entries(categories).map((e,i) => <FilterCard key={i} title={e[0]} options={e[1]} filterType='categories' url={this.props.url} />)}
         {roles && Object.entries(roles).map((e,i) => <FilterCard key={i} title={e[0]} options={e[1]} filterType='roles' url={this.props.url} />)}
         <button onClick={this.clearFilters}>Clear Filters</button>
