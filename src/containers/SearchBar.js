@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 
 import {connect} from 'react-redux'
 import {TextField, Chip, IconButton} from '@material-ui/core'
+import SearchIcon from '@material-ui/icons/Search'
 
 import {dropDownFilters as filter} from '../constants'
 import DropDownFilter from '../components/DropDownFilter'
@@ -50,8 +51,9 @@ class SearchBar extends Component {
     <DropDownFilter name={item} options={filters[item]} key={i} url={this.props.url} changeSelectedFilter={this.props.changeSelectedFilter} />)
 
   createChips = () => (
-    this.props.url.get('query').split(' ').map((term, i) =>
-      term === '' ? null : <Chip key={i} label={term} variant='outlined' color='primary' onDelete={() => this.removeSearchTerm(term)} />)
+    this.props.url.get('query').split(' ').map((term, i) => term ?
+      <Chip key={i} label={term} variant='outlined' color='primary' onDelete={() => this.removeSearchTerm(term)} />
+      : null)
   )
 
 
@@ -60,9 +62,12 @@ class SearchBar extends Component {
     const {terms} = this.props
     const {currentSearch} = this.state
     return (
-      <div>
-        {queryTerms !== null && this.createChips(terms)}
+      <div className='navbar-container'>
+        <div className='chips'>
+          {queryTerms !== null && this.createChips(terms)}
+        </div>
         <TextField
+          className='search-input'
           value={currentSearch}
           onChange={this.handleChange('currentSearch')}
           label='Search'
@@ -72,8 +77,11 @@ class SearchBar extends Component {
           onClick={() => this.handleSearch()}
         >
           Submit
+          <SearchIcon id='search-spinner' />
         </IconButton>
-        {this.createLists(filter)}
+        <div className='dropdown-filters'>
+          {this.createLists(filter)}
+        </div>
       </div>
     )
   }

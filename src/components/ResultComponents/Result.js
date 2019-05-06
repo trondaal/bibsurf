@@ -5,9 +5,10 @@ import {connect} from 'react-redux'
 import uuid from 'uuid'
 
 import {Manifestation, RelatedWorks, Title} from '.'
-import {ResultDiv, WorkTitleDiv, TabBarDiv, TabButton, DetailContainer} from './style.js'
+import {WorkTitleDiv, TabBarDiv, TabButton, DetailContainer} from './style.js'
 import {getRelatedWorks} from '../../actions'
 import {capitalize} from '../../utils'
+import {Paper} from '@material-ui/core'
 
 class Result extends Component {
 
@@ -48,7 +49,7 @@ class Result extends Component {
       else{
         const tabs = []
         this.props.result.expressionOfWork.forEach(expression => {
-          const type = capitalize(`${expression.contentType} (${expression.languageOfExpression})`)
+          const type = capitalize(`${expression.contentType} (${expression.languageOfExpression})`)
           if(!tabs.some(tab => (tab.tabTitle === type))){
             tabs.push({
               tabTitle: type,
@@ -102,7 +103,7 @@ class Result extends Component {
       }
       const tabManifestations = this.state.activeTab ? tabs.filter(tab => (tab.tabTitle === this.state.activeTab))[0] : null
       return (
-        <ResultDiv>
+        <Paper className='result-div'>
           <WorkTitleDiv>
             <div>
               <span>
@@ -139,7 +140,7 @@ class Result extends Component {
             <DetailContainer>
               {this.getManifestationsOfTab(this.state.activeTab === 'Related works' ? related: tabManifestations)}
             </DetailContainer>}
-        </ResultDiv>
+        </Paper>
       )
     }
 }

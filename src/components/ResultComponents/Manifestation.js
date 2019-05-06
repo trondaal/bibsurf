@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import {DetailDiv} from './style'
 import {getDetailsOfManifestation} from '../../actions'
 import {Title, LoaderIcon} from '.'
+import BookIcon from '@material-ui/icons/Book'
 
 class Manifestation extends Component {
 
@@ -47,6 +48,7 @@ class Manifestation extends Component {
     }
   }
 
+
   render() {
     const {titleProper,
       statementOfResponsibility,
@@ -62,9 +64,9 @@ class Manifestation extends Component {
     const secondLine = `${placeOfPublication}: ${publisher}, ${dateOfPublication} ${extent} ${dimensions}`
     return (
       <DetailDiv last={this.props.last}>
-        <div>{firstLine}</div>
+        <div><BookIcon /> {firstLine}</div>
         <div>{secondLine}</div><br />
-        <a onClick={this.getDetailsOfManifestation}>{!this.state.toggled ? 'Show more >>' : 'Show less <<'}</a>
+        <a className={"show-more"} onClick={this.getDetailsOfManifestation}>{!this.state.toggled ? 'Show more >>' : 'Show less <<'}</a>
         {this.state.toggled && this.renderDetails()}
       </DetailDiv>
     )
