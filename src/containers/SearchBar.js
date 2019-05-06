@@ -62,12 +62,12 @@ class SearchBar extends Component {
     const {terms} = this.props
     const {currentSearch} = this.state
     return (
-      <div className='navr'>
+      <div className='navbar-container'>
         <div className='chips'>
           {queryTerms !== null && this.createChips(terms)}
         </div>
         <TextField
-          className='hitme'
+          className='search-input'
           value={currentSearch}
           onChange={this.handleChange('currentSearch')}
           label='Search'

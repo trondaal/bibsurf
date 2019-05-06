@@ -30,7 +30,7 @@ code {
   background-color: rgb(209, 220, 223);
 }
 
-.navr {
+.navbar-container {
   display: flex;
   height: 8vh;
   width: 98vw;
@@ -39,7 +39,7 @@ code {
   padding-top: 2vh;
 }
 
-.hitme {
+.search-input {
   flex-basis: 30%;
   flex-shrink: 1;
 }
@@ -54,6 +54,7 @@ code {
 }
 
 .results-container {
+  margin-right: 5vw;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -102,28 +103,7 @@ code {
   100% {transform: rotate(360deg);}   
 }
 
-
-/*
- * Landing Page Start
-*/
-
-.landing {
-  height: 100vh;
-  width: 100vw;
-  display: grid;
-  grid-template-columns: 33% 33% 33%;
-  grid-template-rows: 7% auto auto;
-  align-items: center;
+.show-more:hover {
+  cursor: pointer;
+  color: #093875;
 }
-.header {
-  width: 100vw;
-  margin-left: 1vw;
-  background-color: #fff;
-  width: auto;
-  grid-column-start: 1;
-  grid-column-end: 4;
-}
-
-/*
- * Landing Page End
-*/
