@@ -38,6 +38,20 @@ export const defaultSearchParams = {
   'roles': '{}'
 }
 
+export const listRoles = [
+  'actor', 'artist', 'author', 'editor', 'composer',
+  'contributor', 'director', 'interviewee', 'interviewer', 'lyricist',
+  'screenwriter', 'producer', 'abridger', 'adapter', 'conductor',
+  'narrator', 'performer', 'translator'
+]
+
+export const carrierTypeToIcon = {
+  "book": "book",
+  "novel": "book",
+  "audio book": "headset",
+  "video": "video"
+}
+
 export const BASE_URL = "http://dijon.idi.ntnu.no/exist/rest/db/bibsurfbeta/xql/search.xquery?"
 export const ADD_SEARCH_TERM = "ADD_SEARCH_TERM"
 export const REMOVE_SEARCH_TERM = "REMOVE_SEARCH_TERM"

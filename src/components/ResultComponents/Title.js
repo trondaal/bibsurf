@@ -1,12 +1,7 @@
 import React from 'react'
 import uuid from 'uuid'
+import {listRoles} from '../../constants'
 
-const listRoles = [
-  'actor', 'artist', 'author', 'editor', 'composer',
-  'contributor', 'director', 'interviewee', 'interviewer', 'lyricist',
-  'screenwriter', 'producer', 'abridger', 'adapter', 'conductor',
-  'narrator', 'performer', 'translator'
-]
 
 const Title = (props) => {
   const roles = Object.keys(props.result).filter(key => listRoles.indexOf(key) !== -1)
