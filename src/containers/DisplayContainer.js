@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
-
 import {connect} from 'react-redux'
 
 import {FilterList} from '../components/SideBarFilter'
 import {WorksList, ManifestationsList, ExpressionsList, SearchBar} from '.'
 import {setSearchParams} from '../actions'
+
 
 class DisplayContainer extends Component{
 
@@ -28,14 +28,14 @@ class DisplayContainer extends Component{
     case "expressions":
       return (<ExpressionsList url={this.props.url.toString()} />)
     default:
-      return this.props.history.push('/')
+      return <WorksList url={this.props.url.toString()} />
     }
   }
 
-  render() {
+  generateView = () => {
     return(
       <div className='container'>
-        <div className='nav-bar'>{this.props.url && <SearchBar url={this.props.url} />}</div>
+        <div className='nav-bar'>{<SearchBar url={this.props.url} />}</div>
         <div className='results-container'>
           <div className='filter-container' >
             <FilterList url={this.props.url} />
@@ -45,11 +45,14 @@ class DisplayContainer extends Component{
       </div>
     )
   }
+
+  render() {
+    return this.props.url && this.generateView()
+  }
 }
 
 const mapStateToProps = (state) => {
   return {
-    urlchanged: state.query.urlChanged,
     url: state.query.url
   }
 }

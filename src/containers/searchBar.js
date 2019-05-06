@@ -79,10 +79,6 @@ class SearchBar extends Component {
   }
 }
 
-const mapStateToProps = (state) => (
-  {
-    terms: state.query.terms
-  }
-)
 
-export default connect(mapStateToProps, {changeSearchParams})(SearchBar)
+
+export default connect(null, {changeSearchParams})(SearchBar)

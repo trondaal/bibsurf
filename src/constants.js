@@ -29,6 +29,7 @@ export const translations = {
 }
 
 export const defaultSearchParams = {
+  'displaytype': 'works',
   'querytype': 'all',
   'subcollection': '',
   'rankingtype': 'default',

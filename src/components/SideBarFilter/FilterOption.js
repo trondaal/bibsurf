@@ -17,13 +17,22 @@ class FilterOption extends Component {
   }
 
   componentDidMount() {
-
     if(this.props.url) {
       const filterMethod = this.props.url.get('filtermethod')
+
       if(filterMethod !== null) {
         this.setState({
           value: filterMethod.toUpperCase()
         })
+      }
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if(this.props.url !== prevProps.url) {
+      const filterMethod = this.props.url.get('filtermethod')
+      if(filterMethod) {
+        this.setState({value: filterMethod.toUpperCase()})
       }
     }
   }
@@ -35,6 +44,7 @@ class FilterOption extends Component {
 
 
   render() {
+    console.log(this.state)
     return (
       <Paper>
         <div style={{marginLeft: 20}}>

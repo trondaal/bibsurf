@@ -14,6 +14,7 @@ class FilterList extends Component {
 
   render() {
     const {categories, roles} = this.props
+
     return (
       <div>
         <FilterOption title='Filter options' options={{AND: '', OR: '', ANDOR: ''}} url={this.props.url} />
