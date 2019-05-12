@@ -17,7 +17,7 @@ class FilterList extends Component {
     const {categories, roles} = this.props
 
     return (
-      <div>
+      <div style={{'paddingBottom': '5px'}}>
         <FilterOption title='Filter options' options={{AND: '', OR: '', ANDOR: ''}} url={this.props.url} />
         {categories && Object.entries(categories).map((e,i) => <FilterCard key={i} title={e[0]} options={e[1]} filterType='categories' url={this.props.url} />)}
         {roles && Object.entries(roles).map((e,i) => <FilterCard key={i} title={e[0]} options={e[1]} filterType='roles' url={this.props.url} />)}
