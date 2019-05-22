@@ -60,11 +60,16 @@ class Manifestation extends Component {
       extent,
       dimensions} = this.props.detail
 
-    const firstLine = `${titleProper} / ${statementOfResponsibility} [${mediaType} - ${carrierType}]`
+    const firstLine = `${titleProper} / ${statementOfResponsibility} `
+    const type = `[${mediaType} - ${carrierType}]`
     const secondLine = `${placeOfPublication}: ${publisher}, ${dateOfPublication} ${extent} ${dimensions}`
     return (
       <DetailDiv last={this.props.last}>
-        <div><BookIcon /> {firstLine}</div>
+        <div>
+          <BookIcon />
+          <span className={"manifestation-title"}>{firstLine}</span>
+          <span className={"manifestation-type"}>{type}</span>
+        </div>
         <div>{secondLine}</div><br />
         <a className={"show-more"} onClick={this.getDetailsOfManifestation}>{!this.state.toggled ? 'Show more >>' : 'Show less <<'}</a>
         {this.state.toggled && this.renderDetails()}
