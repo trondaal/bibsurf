@@ -71,7 +71,7 @@ class Manifestation extends Component {
           <span className={"manifestation-type"}>{type}</span>
         </div>
         <div>{secondLine}</div><br />
-        <a className={"show-more"} onClick={this.getDetailsOfManifestation}>{!this.state.toggled ? 'Show more >>' : 'Show less <<'}</a>
+        <a className={"show-more"} onClick={this.getDetailsOfManifestation}>Show {!this.state.toggled ? 'more >>' : 'less <<'}</a>
         {this.state.toggled && this.renderDetails()}
       </DetailDiv>
     )
