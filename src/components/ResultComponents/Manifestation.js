@@ -5,11 +5,8 @@ import {connect} from 'react-redux'
 import {DetailDiv} from './style'
 import {getDetailsOfManifestation} from '../../actions'
 import {Title, LoaderIcon} from '.'
-import {carrierTypeToIcon} from '../../constants'
+import {AdaptiveIcon} from './AdaptiveIcon'
 
-import HeadsetIcon from '@material-ui/icons/Headset'
-import BookIcon from '@material-ui/icons/Book'
-import LocalMoviesIcon from '@material-ui/icons/LocalMovies'
 
 class Manifestation extends Component {
 
@@ -69,10 +66,7 @@ class Manifestation extends Component {
     return (
       <DetailDiv last={this.props.last}>
         <div>
-          {carrierTypeToIcon[carrierType] === "book" ? <BookIcon /> :
-            carrierTypeToIcon[carrierType] === "headset" ? <HeadsetIcon /> :
-              carrierTypeToIcon[carrierType] === "local_movies" ? <LocalMoviesIcon />
-                : null }
+          <AdaptiveIcon carrierType={carrierType} />
           <span className={"manifestation-title"}>{firstLine}</span>
           <span className={"manifestation-type"}>{type}</span>
         </div>
