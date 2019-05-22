@@ -46,11 +46,15 @@ export const listRoles = [
   'narrator', 'performer', 'translator'
 ]
 
+/**
+ * @key {returned value from API}
+ * @value {material UI icon}
+ */
 export const carrierTypeToIcon = {
   "book": "book",
   "novel": "book",
   "audio book": "headset",
-  "video": "video"
+  "video": "local_movies"
 }
 
 export const BASE_URL = "http://dijon.idi.ntnu.no/exist/rest/db/bibsurfbeta/xql/search.xquery?"
