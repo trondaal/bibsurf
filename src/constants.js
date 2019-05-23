@@ -57,6 +57,28 @@ export const carrierTypeToIcon = {
   "video": "local_movies"
 }
 
+/**
+ * Defines the order of fields to include in a manifestation, if they exsist
+ */
+export const manifestationFields = [
+  // Should figure out how to apply separators through css
+  // [prepend separator, fieldType, append seperator]
+
+  // First line
+  [["", "titleProper", " "], ["/", "statementOfResponsibility", ""]],
+  // Type (first line)
+  [["[", "mediaType", " "], ["- ", "carrierType", "]"]],
+  // Second line
+  [
+    ["", "placeOfPublication", ""],
+    [":", "publisher", ""],
+    [",", "dateOfPublication", "."],
+    ["", "extent", " "],
+    ["", "dimensions", " "],
+    ["ISBN","identifierForTheManifestation", ""]
+  ]
+]
+
 export const BASE_URL = "http://dijon.idi.ntnu.no/exist/rest/db/bibsurfbeta/xql/search.xquery?"
 export const ADD_SEARCH_TERM = "ADD_SEARCH_TERM"
 export const REMOVE_SEARCH_TERM = "REMOVE_SEARCH_TERM"
