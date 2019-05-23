@@ -6,6 +6,7 @@ import {DetailDiv} from './style'
 import {getDetailsOfManifestation} from '../../actions'
 import {Title, LoaderIcon} from '.'
 import {AdaptiveIcon} from './AdaptiveIcon'
+import {manifestationFields} from '../../constants'
 
 
 class Manifestation extends Component {
@@ -49,30 +50,48 @@ class Manifestation extends Component {
     }
   }
 
+  buildManifestation = details => {
+    // Loop over elements in list, include if defined in detalis[manifestationFields[0|1|2]]
+    let firstLine = ""
+    let type = ""
+    let secondLine = ""
+
+    // Building first line
+    manifestationFields[0].forEach(field => {if(details[field[1]])
+      // [prepend separator, fieldType, append seperator]
+      firstLine += `${field[0]} ${details[field[1]]} ${field[2]}`
+    })
+
+    // Building type
+    manifestationFields[1].forEach(field => {if(details[field[1]])
+      type += `${field[0]} ${details[field[1]]} ${field[2]}`
+    })
+
+    // Building second line
+    manifestationFields[2].forEach(field => {if(details[field[1]])
+      // check if field is ISBN
+      // stip all non digits
+      field[1] === "identifierForTheManifestation" ? secondLine += `${field[0]} ${details[field[1]].replace(/\D/g,'')} ${field[2]}`
+        : secondLine += `${field[0]} ${details[field[1]]}${field[2]}`
+    })
+    return [firstLine, type, secondLine]
+  }
 
   render() {
-    const {titleProper,
-      statementOfResponsibility,
-      mediaType,
-      carrierType,
-      placeOfPublication,
-      dateOfPublication,
-      publisher,
-      extent,
-      dimensions} = this.props.detail
-    const firstLine = `${titleProper} / ${statementOfResponsibility} `
-    const type = `[${mediaType} - ${carrierType}]`
-    const secondLine = `${placeOfPublication}: ${publisher}, ${dateOfPublication} ${extent} ${dimensions}`
+
+    const {last, detail, detail: {carrierType}} = this.props
+    const {toggled} = this.state
+    const [firstLine, type, secondLine] = this.buildManifestation(detail)
     return (
-      <DetailDiv last={this.props.last}>
+      <DetailDiv last={last}>
         <div>
           <AdaptiveIcon carrierType={carrierType} />
           <span className={"manifestation-title"}>{firstLine}</span>
           <span className={"manifestation-type"}>{type}</span>
         </div>
         <div>{secondLine}</div><br />
-        <a className={"show-more"} onClick={this.getDetailsOfManifestation}>Show {!this.state.toggled ? 'more >>' : 'less <<'}</a>
-        {this.state.toggled && this.renderDetails()}
+        <a className={"show-more"} onClick={this.getDetailsOfManifestation}>Show {!toggled ? 'more >>' : 'less <<'}</a>
+        {toggled && this.renderDetails()}
       </DetailDiv>
     )
   }
