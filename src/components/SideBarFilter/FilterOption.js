@@ -39,12 +39,11 @@ class FilterOption extends Component {
 
   handleChange = event => {
     this.setState({value: event.target.value})
-    this.props.changeSearchParams(this.props.url, 'filtermethod', event.target.value.toLowerCase().slice(0, -1))
+    this.props.changeSearchParams(this.props.url, 'filtermethod', event.target.value.toLowerCase())
   }
 
 
   render() {
-    console.log(this.state)
     return (
       <Paper>
         <div style={{marginLeft: 20}}>
@@ -54,7 +53,7 @@ class FilterOption extends Component {
             value={this.state.value}
             onChange={this.handleChange}
           >
-            {Object.entries(this.props.options).map(o => o.join(" ")).map((l, i) => <FormControlLabel key={i} value={l} control={<Radio />} label={l} />)}
+            {Object.keys(this.props.options).map((l, i) => <FormControlLabel key={i} value={l} control={<Radio />} label={l} />)}
           </RadioGroup>
         </div>
       </Paper>

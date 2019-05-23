@@ -14,10 +14,13 @@ class DropDownFilter extends Component {
   }
 
   handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value
-    })
-    this.props.changeSearchParams(this.props.url.toString(), translated[this.props.name], event.target.value.toLowerCase())
+    console.log(event.target.value)
+    if(this.state.selected !== event.target.value) {
+      this.setState({
+        [name]: event.target.value
+      })
+      this.props.changeSearchParams(this.props.url.toString(), translated[this.props.name], event.target.value.toLowerCase())
+    }
   }
 
   //Select the value of the dropown based on the url.
@@ -37,6 +40,7 @@ class DropDownFilter extends Component {
     return (
       <FormControl variant='outlined' style={{width: "10vw"}}>
         <InputLabel
+          style={{'color': '#bbdefb'}}
           ref={ref => {
             this.InputLabelRef = ref
           }}
@@ -45,10 +49,12 @@ class DropDownFilter extends Component {
           {name}
         </InputLabel>
         <Select
+          style={{'color': '#bbdefb'}}
           value={this.getSelected()}
           onChange={this.handleChange("selected")}
           input={
             <OutlinedInput
+              style={{'color': '#bbdefb', 'border-color': '#bbdefb'}}
               labelWidth={name === "Match" ? 40 : name === "Display" ? 50 : 55}
               label={name}
               name={name}
@@ -56,7 +62,7 @@ class DropDownFilter extends Component {
             />
           }
         >
-          {options.map((e, i) => <MenuItem key={i} value={e}>{e}</MenuItem>)}
+          {options.map((e, i) => <MenuItem key={i} style={{'color': '#0d47a1'}} value={e}>{e}</MenuItem>)}
         </Select>
       </FormControl>
     )
