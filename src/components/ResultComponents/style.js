@@ -45,6 +45,7 @@ export const TabButton = styled.button`
   &:hover {
     transition: 0.5s;
     background-color: #f4f2f2;
+    box-shadow: 0px 3px 5px rgba(0,0,0,0.2);
   }
   &:focus{
     outline: 0;
