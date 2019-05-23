@@ -107,10 +107,10 @@ class Result extends Component {
           <WorkTitleDiv>
             <div>
               <span>
-                <h4 style={{'color': '#0039e6'}}>
+                <h4 className={"manifestation-title"}>
                   {type === 'expressions' ? result.title : result.titleOfWork[0]} /
                   <Title result={result} />
-                  <span style={{'color': 'lightgrey'}}> [{type === 'expressions' ?
+                  <span className={"manifestation-type"}> [{type === 'expressions' ?
                     `${result.workExpressed.formOfWork} - ${result.languageOfExpression} - ${result.contentType}`
                     : result.formOfWork}]</span>
                 </h4>

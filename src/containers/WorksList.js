@@ -22,13 +22,13 @@ class WorksList extends Component {
 
 
   renderResults = () => {
-    return this.props.results.map(result => {
+    return this.props.results.slice(0,this.props.resultSize).map(result => {
       return <Result result={result} key={uuid()} type='work' />
     })
   }
 
   handleGetNext = () => {
-    if(!this.props.loading || this.props.results.length !== this.props.resultSize){
+    if(!this.props.loading && this.props.results.length < this.props.resultSize){
       this.props.getNext(this.props.next)
     }
   }

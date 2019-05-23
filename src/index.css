@@ -6,7 +6,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(235, 235, 235);
+  background-color: #f5f5f5;
   max-width: 100vw;
   overflow-x: hidden;
 }
@@ -19,6 +19,7 @@ code {
 .container {
   display: flex;
   flex-direction: column;
+  position: relative;
   width: 100%;
   align-items: flex-start;
   justify-content: space-between;
@@ -27,16 +28,24 @@ code {
 .nav-bar {
   margin-bottom: 10px;
   width:100vw;
-  background-color: rgb(209, 220, 223);
+  background-color: #0d47a1;
+  color: #c5cae9;
+  position: fixed;
+  z-index: 1;
+  height: 100px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .navbar-container {
+  color: #c5cae9;
   display: flex;
-  height: 8vh;
   width: 98vw;
   justify-content: center;
   align-content: center;
-  padding-top: 2vh;
+
 }
 
 .search-input {
@@ -47,10 +56,36 @@ code {
 .chips {
   float: left;
   margin-right: 1vw;
+  display: flex;
+  align-items: center;
 }
 
 .dropdown-filters {
   margin-left: auto;
+}
+
+.dropdown-filters > div > div > .MuiOutlinedInput-notchedOutline-64 {
+  border-color: #bbdefb;
+}
+
+.navbar-container > div > div > .MuiOutlinedInput-notchedOutline-64 {
+  border-color: #bbdefb;
+}
+
+.navbar-container > div > div > .MuiChip-deleteIconOutlinedColorPrimary-24 {
+  color: #bbdefb
+}
+
+.navbar-container > div > div > .MuiOutlinedInput-notchedOutline-64:hover {
+  border-color: #64b5f6;
+}
+
+.navbar-container > div > .MuiFormLabel-root-50 {
+  color: #bbdefb;
+}
+
+.navbar-container > div > .MuiInputBase-formControl-71:hover {
+  border-color: red;
 }
 
 .results-container {
@@ -58,7 +93,8 @@ code {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  width: 90vw;
+  width: 100vw;
+  padding-top: 6em;
 }
 
 .result-div {
@@ -80,6 +116,10 @@ code {
   margin-top: 1em;
   margin-right: 2vw;
   width: 20vw;
+  overflow-y: scroll;
+  position: fixed;
+  height: 80vh;
+  padding-left: 10px;
 }
 
 .sidebar-filter {
@@ -114,5 +154,14 @@ code {
   color: grey;
   text-decoration: none;
   padding: 1px;
+  cursor: pointer;
 
+}
+
+.manifestation-title {
+  color: #0039e6
+}
+
+.manifestation-type {
+  color: lightgrey
 }

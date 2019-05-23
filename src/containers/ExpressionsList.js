@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import uuid from 'uuid'
+import BottomScrollListener from 'react-bottom-scroll-listener'
 
-
-import {newQuery} from '../actions'
+import {newQuery, getNext} from '../actions'
 import {Result, LoaderIcon} from '../components/ResultComponents'
 
 import {ResultContainer} from './style'
@@ -21,15 +21,23 @@ class ExpressionsList extends Component {
   }
 
   renderExpressions = () => {
-    return this.props.results.map(result => {
+    return this.props.results.slice(0, this.props.resultSize).map(result => {
       return <Result result={result} key={uuid()} type='expressions' />
     })
+  }
+
+  handleGetNext = () => {
+    if(!this.props.loading && this.props.results.length < this.props.resultSize){
+      this.props.getNext(this.props.next)
+    }
   }
 
   render() {
     return (
       <ResultContainer>
-        {this.renderExpressions()}
+        <BottomScrollListener onBottom={this.handleGetNext} debounce={500}>
+          {this.renderExpressions()}
+        </BottomScrollListener>
         {this.props.loading && <LoaderIcon />}
       </ResultContainer>
     )
@@ -45,4 +53,4 @@ const mapStateToProps = (state) => (
   }
 )
 
-export default connect(mapStateToProps, {newQuery})(ExpressionsList)
+export default connect(mapStateToProps, {newQuery, getNext})(ExpressionsList)

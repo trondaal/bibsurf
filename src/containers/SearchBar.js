@@ -52,7 +52,7 @@ class SearchBar extends Component {
 
   createChips = () => (
     this.props.url.get('query').split(' ').map((term, i) => term ?
-      <Chip key={i} label={term} variant='outlined' color='primary' onDelete={() => this.removeSearchTerm(term)} />
+      <Chip style={{'color': '#bbdefb', 'border-color': '#bbdefb'}}key={i} label={term} variant='outlined' color='primary' onDelete={() => this.removeSearchTerm(term)} />
       : null)
   )
 
@@ -74,10 +74,11 @@ class SearchBar extends Component {
           variant='outlined'
         />
         <IconButton aria-label='Search'
+          style={{'color': '#bbdefb'}}
           onClick={() => this.handleSearch()}
         >
           Submit
-          <SearchIcon id='search-spinner' />
+          <SearchIcon id='search-spinner' style={{'color': '#bbdefb'}} />
         </IconButton>
         <div className='dropdown-filters'>
           {this.createLists(filter)}
@@ -86,7 +87,5 @@ class SearchBar extends Component {
     )
   }
 }
-
-
 
 export default connect(null, {changeSearchParams})(SearchBar)

@@ -36,7 +36,7 @@ export const TabBarDiv = styled.div`
 export const TabButton = styled.button`
   padding: 0 10px 0 10px;
   height: 100%;
-  background-color: ${props => props.active ? 'white' : '#ddd'};
+  background-color: ${props => props.active ? '#f4f2f2' : '#ddd'};
   border: none;
   text-align: center;
   font-size: 15px;
@@ -45,6 +45,7 @@ export const TabButton = styled.button`
   &:hover {
     transition: 0.5s;
     background-color: #f4f2f2;
+    box-shadow: 0px 3px 5px rgba(0,0,0,0.2);
   }
   &:focus{
     outline: 0;

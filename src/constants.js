@@ -46,12 +46,38 @@ export const listRoles = [
   'narrator', 'performer', 'translator'
 ]
 
+/**
+ * @key {returned value from API}
+ * @value {material UI icon}
+ */
 export const carrierTypeToIcon = {
   "book": "book",
   "novel": "book",
   "audio book": "headset",
-  "video": "video"
+  "video": "local_movies"
 }
+
+/**
+ * Defines the order of fields to include in a manifestation, if they exsist
+ */
+export const manifestationFields = [
+  // Should figure out how to apply separators through css
+  // [prepend separator, fieldType, append seperator]
+
+  // First line
+  [["", "titleProper", " "], ["/", "statementOfResponsibility", ""]],
+  // Type (first line)
+  [["[", "mediaType", " "], ["- ", "carrierType", "]"]],
+  // Second line
+  [
+    ["", "placeOfPublication", ""],
+    [":", "publisher", ""],
+    [",", "dateOfPublication", "."],
+    ["", "extent", " "],
+    ["", "dimensions", " "],
+    ["ISBN","identifierForTheManifestation", ""]
+  ]
+]
 
 export const BASE_URL = "http://dijon.idi.ntnu.no/exist/rest/db/bibsurfbeta/xql/search.xquery?"
 export const ADD_SEARCH_TERM = "ADD_SEARCH_TERM"

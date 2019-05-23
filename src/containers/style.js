@@ -7,6 +7,8 @@ export const ResultContainer = styled.div`
   align-items: center;
   margin-top: 1em;
   width: 75vw; 
+  height: 80vh;
+  padding-left: 22vw;
 `
 
 export const ManifestationsContainer = styled.div `
