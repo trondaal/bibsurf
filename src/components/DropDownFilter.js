@@ -14,7 +14,6 @@ class DropDownFilter extends Component {
   }
 
   handleChange = name => event => {
-    console.log(event.target.value)
     if(this.state.selected !== event.target.value) {
       this.setState({
         [name]: event.target.value
