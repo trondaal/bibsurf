@@ -79,6 +79,14 @@ export const manifestationFields = [
   ]
 ]
 
+export const relatedWorkFields = [
+  // First line
+  [["", "titleOfWork", " "], ["/ ", "author", " "]],
+  // Type (first line)
+  [["[", "formOfWork", "]"]]
+]
+
+// Reducer constants
 export const BASE_URL = "http://dijon.idi.ntnu.no/exist/rest/db/bibsurfbeta/xql/search.xquery?"
 export const ADD_SEARCH_TERM = "ADD_SEARCH_TERM"
 export const REMOVE_SEARCH_TERM = "REMOVE_SEARCH_TERM"

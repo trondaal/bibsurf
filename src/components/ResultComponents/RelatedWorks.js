@@ -13,9 +13,20 @@ const RelatedWorks = (props) => {
           <h4>{title}</h4>
           <ul>
             {props.relation.relations[key].map(work => {
-              const line = `${work.titleOfWork} / [${work.formOfWork}]`
-              return(
-                <li key={uuid()}>{line}</li>
+              relatedWorkFields[0].forEach(field => {
+                if(work[field[1]]){
+                  field[1] === "author" ? line += `${field[0]} ${work[field[1]][0].nameOfPerson} ${field[2]}`
+                    : line += `${field[0]} ${work[field[1]]} ${field[2]}`
+                }
+              })
+              relatedWorkFields[1].forEach(field => {
+                if(work[field[1]]) type += `${field[0]}${work[field[1]]}${field[2]}`
+              })
+              return (
+                <li key={uuid()}>
+                  <span className={"manifestation-title"}>{line}</span>
+                  <span className={"manifestation-type"}>{type}</span>
+                </li>
               )
             })}
           </ul>
