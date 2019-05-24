@@ -9,11 +9,23 @@ import {carrierTypeToIcon} from '../../constants'
  * Translates carrierType into an Icon using the carrierTypeToIcon map
  * @param {obj} carrierType
  */
-export function AdaptiveIcon({carrierType}) {
-  return(
-    carrierTypeToIcon[carrierType] === "book" ? <BookIcon /> :
-      carrierTypeToIcon[carrierType] === "headset" ? <HeadsetIcon /> :
-        carrierTypeToIcon[carrierType] === "local_movies" ? <LocalMoviesIcon />
-          : null
-  )
+export function CarrierTypeIcon({carrierType}) {
+  // TODO: Refactor
+  let Icon
+
+  switch (carrierTypeToIcon[carrierType]) {
+  case "book":
+    Icon = BookIcon
+    break
+  case "headset":
+    Icon = HeadsetIcon
+    break
+  case "local_movies":
+    Icon = LocalMoviesIcon
+    break
+  default:
+    break
+  }
+
+  return Icon ? <Icon /> : null
 }

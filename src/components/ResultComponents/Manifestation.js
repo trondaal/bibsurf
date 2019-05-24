@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import {DetailDiv} from './style'
 import {getDetailsOfManifestation} from '../../actions'
 import {Title, LoaderIcon} from '.'
-import {AdaptiveIcon} from './AdaptiveIcon'
+import {CarrierTypeIcon} from './CarrierTypeIcon'
 import {manifestationFields} from '../../constants'
 
 
@@ -85,7 +85,7 @@ class Manifestation extends Component {
     return (
       <DetailDiv last={last}>
         <div>
-          <AdaptiveIcon carrierType={carrierType} />
+          <CarrierTypeIcon carrierType={carrierType} />
           <span className={"manifestation-title"}>{firstLine}</span>
           <span className={"manifestation-type"}>{type}</span>
         </div>
