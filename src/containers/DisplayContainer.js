@@ -7,8 +7,6 @@ import {setSearchParams} from '../actions'
 
 
 class DisplayContainer extends Component{
-
-
   componentDidMount() {
     this.props.setSearchParams(this.props.location.search)
   }
@@ -20,27 +18,29 @@ class DisplayContainer extends Component{
   }
 
   chooseDisplay = () => {
-    switch (this.props.url.get('displaytype')) {
+    const {url} = this.props
+    switch (url.get('displaytype')) {
     case "manifestations":
-      return <ManifestationsList url={this.props.url.toString()} />
+      return <ManifestationsList url={url.toString()} />
     case "works":
-      return (<WorksList url={this.props.url.toString()} />)
+      return (<WorksList url={url.toString()} />)
     case "expressions":
-      return (<ExpressionsList url={this.props.url.toString()} />)
+      return (<ExpressionsList url={url.toString()} />)
     default:
-      return <WorksList url={this.props.url.toString()} />
+      return <WorksList url={url.toString()} />
     }
   }
 
   generateView = () => {
+    const {url} = this.props
     return(
       <div className='container'>
-        <div className='nav-bar'>{<SearchBar url={this.props.url} />}</div>
+        <div className='nav-bar'>{<SearchBar url={url} />}</div>
         <div className='results-container'>
           <div className='filter-container' >
-            <FilterList url={this.props.url} />
+            <FilterList url={url} />
           </div>
-          {this.props.url && this.chooseDisplay()}
+          {url && this.chooseDisplay()}
         </div>
       </div>
     )
@@ -51,7 +51,7 @@ class DisplayContainer extends Component{
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     url: state.query.url
   }

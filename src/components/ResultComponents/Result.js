@@ -11,29 +11,28 @@ import {capitalize} from '../../utils'
 import {Paper} from '@material-ui/core'
 
 class Result extends Component {
-
     state = {
       activeTab: null,
       toggled: false
     }
 
-    toggleTab = (e) => {
+    toggleTab = ({target: {id}}) => {
       if(!this.state.toggled) {
         this.setState({
-          activeTab: e.target.id,
+          activeTab: id,
           toggled: true
         })
       }
-      else if(this.state.activeTab !== e.target.id){
+      else if(this.state.activeTab !== id){
         this.setState({
-          activeTab: e.target.id
+          activeTab: id
         })
       }
       else{
-        this.setState({
-          activeTab: e.target.id,
-          toggled: !this.state.toggled
-        })
+        this.setState(prevState => ({
+          activeTab: id,
+          toggled: !prevState.toggled
+        }))
       }
     }
 
@@ -65,7 +64,7 @@ class Result extends Component {
       }
     }
 
-    getRelatedWorks = (e) => {
+    getRelatedWorks = e => {
       if(!this.props.related.some(relation => relation.workId === this.props.result.about)){
         this.toggleTab(e)
         this.props.getRelatedWorks(this.props.result.about)
@@ -75,7 +74,7 @@ class Result extends Component {
       }
     }
 
-    getManifestationsOfTab = (activeTab) => {
+    getManifestationsOfTab = activeTab => {
       if(activeTab.tabTitle === "Related works"){
         const relation = this.props.related.filter(relation => (relation.workId === this.props.result.about))[0]
         return (

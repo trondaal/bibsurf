@@ -11,7 +11,6 @@ import {
 import {changeSearchParams} from '../../actions'
 
 class FilterOption extends Component {
-
   state = {
     value: "AND"
   }
@@ -37,29 +36,29 @@ class FilterOption extends Component {
     }
   }
 
-  handleChange = event => {
-    this.setState({value: event.target.value})
-    this.props.changeSearchParams(this.props.url, 'filtermethod', event.target.value.toLowerCase())
+  handleChange = ({target: {value}}) => {
+    this.setState({value: value})
+    this.props.changeSearchParams(this.props.url, 'filtermethod', value.toLowerCase())
   }
 
 
   render() {
+    const {props: {title, options}, state: {value}} = this
     return (
       <Paper>
         <div style={{marginLeft: 20}}>
-          <Typography>{this.props.title}</Typography>
+          <Typography>{title}</Typography>
           <RadioGroup
-            name={this.props.title}
-            value={this.state.value}
+            name={title}
+            value={value}
             onChange={this.handleChange}
           >
-            {Object.keys(this.props.options).map((l, i) => <FormControlLabel key={i} value={l} control={<Radio />} label={l} />)}
+            {Object.keys(options).map((l, i) => <FormControlLabel key={i} value={l} control={<Radio />} label={l} />)}
           </RadioGroup>
         </div>
       </Paper>
     )
   }
-
 }
 
 export default connect(null, {changeSearchParams})(FilterOption)

@@ -3,11 +3,14 @@ import uuid from 'uuid'
 
 import {formatCamelCase} from '../../utils'
 import {DetailDiv} from './style'
+import {relatedWorkFields} from '../../constants'
 
-const RelatedWorks = (props) => {
+const RelatedWorks = props => {
   const getWork = () => {
-    return Object.keys(props.relation.relations).map((key) => {
+    return Object.keys(props.relation.relations).map(key => {
       const title = formatCamelCase(key)
+      let line = ""
+      let type = ""
       return (
         <div key={uuid()}>
           <h4>{title}</h4>
