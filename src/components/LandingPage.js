@@ -37,7 +37,12 @@ class LandingPage extends Component {
         justifyContent: 'center',
         alignItems: 'center',
         objectFit: 'contain',
-        height: '500px'}}
+        height: '100vh',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover'
+
+      }}
       >
         <div style={{backgroundColor: 'white', padding: '20px'}}>
           <div>
