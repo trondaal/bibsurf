@@ -11,6 +11,7 @@ import {manifestationFields} from '../../constants'
 import {Button} from '@material-ui/core'
 import UnfoldMore from '@material-ui/icons/UnfoldMoreOutlined'
 import UnfoldLess from '@material-ui/icons/UnfoldLessOutlined'
+import uuid from 'uuid'
 
 
 class Manifestation extends Component {
@@ -38,15 +39,19 @@ class Manifestation extends Component {
     if(!manifestation) {
       return <LoaderIcon style={{'width': '10px', 'height': '10px'}} />
     }else{
-      const {detail} = manifestation
+      let detail = []
+      // Convert result to array if it is not an array already
+      !Array.isArray(manifestation.detail) ? detail = [manifestation.detail] : detail = manifestation.detail
       return (
         <div>
           <div>Contents:</div>
           <ul>
-            <li>{detail.title} /
-              <Title result={detail.workExpressed} />
-              <span> [{detail.workExpressed.formOfWork} - {detail.languageOfExpression} - {detail.contentType}]</span>
-            </li>
+            {detail.length && detail.map(el => (
+              <li key={uuid()}>{el.title} /
+                <Title result={el.workExpressed} />
+                <span> [{el.workExpressed.formOfWork} - {el.languageOfExpression} - {el.contentType}]</span>
+              </li>
+            ))}
           </ul>
         </div>
       )
