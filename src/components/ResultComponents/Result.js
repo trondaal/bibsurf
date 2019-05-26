@@ -122,14 +122,14 @@ class Result extends Component {
             </div>
           </WorkTitleDiv>
           <TabBarDiv>
-            {tabs.map(tab => {
-              return <TabButton
+            {tabs.map(tab => (
+              <TabButton
                 onClick={this.toggleTab}
                 id={tab.tabTitle}
                 key={uuid()}
                 active={tab.tabTitle === this.state.activeTab && this.state.toggled}
               >{tab.tabTitle}</TabButton>
-            })}
+            ))}
             {related !== null && <TabButton
               onClick={this.getRelatedWorks}
               id={related.tabTitle}
@@ -145,7 +145,7 @@ class Result extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     related: state.result.related
   }

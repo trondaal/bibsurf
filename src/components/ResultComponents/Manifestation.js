@@ -13,7 +13,6 @@ import UnfoldMore from '@material-ui/icons/UnfoldMoreOutlined'
 import UnfoldLess from '@material-ui/icons/UnfoldLessOutlined'
 import uuid from 'uuid'
 
-
 class Manifestation extends Component {
   state = {
     toggled: false
@@ -28,7 +27,7 @@ class Manifestation extends Component {
 
 
   toggleDetails = () => {
-    this.setState((prevState) => ({
+    this.setState(prevState => ({
       toggled: !prevState.toggled
     }))
   }
@@ -87,7 +86,6 @@ class Manifestation extends Component {
   }
 
   render() {
-
     const {last, detail, detail: {carrierType}} = this.props
     const {toggled} = this.state
     const [firstLine, type, secondLine] = this.buildManifestation(detail)
@@ -109,7 +107,7 @@ class Manifestation extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     manifestationsDetails: state.result.manifestationsDetails
   }
