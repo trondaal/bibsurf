@@ -73,6 +73,7 @@ export const manifestationFields = [
     ["", "placeOfPublication", ""],
     [":", "publisher", ""],
     [",", "dateOfPublication", "."],
+    ["", "editionStatement", " "],
     ["", "extent", " "],
     ["", "dimensions", " "],
     ["ISBN","identifierForTheManifestation", ""]
