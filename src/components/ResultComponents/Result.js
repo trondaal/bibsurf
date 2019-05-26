@@ -107,7 +107,8 @@ class Result extends Component {
             <div>
               <span>
                 <h4 className={"manifestation-title"}>
-                  {type === 'expressions' ? result.title : result.titleOfWork[0]} /
+                  {type === 'expressions' ? `${result.title} / ` : `${result.titleOfWork[0]} /`}
+                  {type === 'expressions' && result.workExpressed.author ? result.workExpressed.author[0].nameOfPerson : ""}
                   <Title result={result} />
                   <span className={"manifestation-type"}> [{type === 'expressions' ?
                     `${result.workExpressed.formOfWork} - ${result.languageOfExpression} - ${result.contentType}`
