@@ -21,8 +21,9 @@ class ExpressionsList extends Component {
   }
 
   renderExpressions = () => {
-    return this.props.results.slice(0, this.props.resultSize).map(result => {
-      return <Result result={result} key={uuid()} type='expressions' />
+    return this.props.results.slice(0, this.props.resultSize).map((result, i) => {
+      const toggled = i < 2
+      return <Result result={result} key={uuid()} type='expressions' toggled={toggled} />
     })
   }
 

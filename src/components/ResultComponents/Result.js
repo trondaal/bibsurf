@@ -16,6 +16,13 @@ class Result extends Component {
       toggled: false
     }
 
+    componentDidMount() {
+      if(this.props.toggled) {
+        const tab = {target:{id: this.getTabs()[0].tabTitle}}
+        this.toggleTab(tab)
+      }
+    }
+
     toggleTab = ({target: {id}}) => {
       if(!this.state.toggled) {
         this.setState({
