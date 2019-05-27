@@ -11,29 +11,28 @@ import {capitalize} from '../../utils'
 import {Paper} from '@material-ui/core'
 
 class Result extends Component {
-
     state = {
       activeTab: null,
       toggled: false
     }
 
-    toggleTab = (e) => {
+    toggleTab = ({target: {id}}) => {
       if(!this.state.toggled) {
         this.setState({
-          activeTab: e.target.id,
+          activeTab: id,
           toggled: true
         })
       }
-      else if(this.state.activeTab !== e.target.id){
+      else if(this.state.activeTab !== id){
         this.setState({
-          activeTab: e.target.id
+          activeTab: id
         })
       }
       else{
-        this.setState({
-          activeTab: e.target.id,
-          toggled: !this.state.toggled
-        })
+        this.setState(prevState => ({
+          activeTab: id,
+          toggled: !prevState.toggled
+        }))
       }
     }
 
@@ -65,7 +64,7 @@ class Result extends Component {
       }
     }
 
-    getRelatedWorks = (e) => {
+    getRelatedWorks = e => {
       if(!this.props.related.some(relation => relation.workId === this.props.result.about)){
         this.toggleTab(e)
         this.props.getRelatedWorks(this.props.result.about)
@@ -75,7 +74,7 @@ class Result extends Component {
       }
     }
 
-    getManifestationsOfTab = (activeTab) => {
+    getManifestationsOfTab = activeTab => {
       if(activeTab.tabTitle === "Related works"){
         const relation = this.props.related.filter(relation => (relation.workId === this.props.result.about))[0]
         return (
@@ -108,7 +107,8 @@ class Result extends Component {
             <div>
               <span>
                 <h4 className={"manifestation-title"}>
-                  {type === 'expressions' ? result.title : result.titleOfWork[0]} /
+                  {type === 'expressions' ? `${result.title} / ` : `${result.titleOfWork[0]} /`}
+                  {type === 'expressions' && result.workExpressed.author ? result.workExpressed.author[0].nameOfPerson : ""}
                   <Title result={result} />
                   <span className={"manifestation-type"}> [{type === 'expressions' ?
                     `${result.workExpressed.formOfWork} - ${result.languageOfExpression} - ${result.contentType}`
@@ -122,14 +122,14 @@ class Result extends Component {
             </div>
           </WorkTitleDiv>
           <TabBarDiv>
-            {tabs.map(tab => {
-              return <TabButton
+            {tabs.map(tab => (
+              <TabButton
                 onClick={this.toggleTab}
                 id={tab.tabTitle}
                 key={uuid()}
                 active={tab.tabTitle === this.state.activeTab && this.state.toggled}
               >{tab.tabTitle}</TabButton>
-            })}
+            ))}
             {related !== null && <TabButton
               onClick={this.getRelatedWorks}
               id={related.tabTitle}
@@ -145,7 +145,7 @@ class Result extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     related: state.result.related
   }

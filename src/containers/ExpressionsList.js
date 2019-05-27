@@ -44,7 +44,7 @@ class ExpressionsList extends Component {
   }
 }
 
-const mapStateToProps = (state) => (
+const mapStateToProps = state => (
   {
     results: state.result.results,
     next: state.result.next,

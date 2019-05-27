@@ -28,8 +28,9 @@ class ManifestationsList extends Component {
   }
 
   handleGetNext = () => {
-    if(!this.props.loading && this.props.results.length < this.props.resultSize){
-      this.props.getNext(this.props.next)
+    const {loading, results, resultSize, next} = this.props
+    if(!loading && results.length < resultSize){
+      this.props.getNext(next)
     }
   }
 
@@ -49,7 +50,7 @@ class ManifestationsList extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     results: state.result.results,
     loading: state.result.loading,

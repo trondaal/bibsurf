@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {dropDownFiltersTranslated as translated} from '../constants'
+import {changeSearchParams} from '../actions'
+
 import OutlinedInput from '@material-ui/core/OutlinedInput'
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
-import {dropDownFiltersTranslated as translated} from '../constants'
-import {changeSearchParams} from '../actions'
 
 class DropDownFilter extends Component {
   state = {
@@ -14,7 +15,6 @@ class DropDownFilter extends Component {
   }
 
   handleChange = name => event => {
-    console.log(event.target.value)
     if(this.state.selected !== event.target.value) {
       this.setState({
         [name]: event.target.value
@@ -30,17 +30,16 @@ class DropDownFilter extends Component {
     if(this.props.url.get(translated[name]) && option.length === 1){
       return option
     }else{
-      return this.props.options[0]
+      return options[0]
     }
   }
 
   render() {
-
     const {name, options} = this.props
     return (
       <FormControl variant='outlined' style={{width: "10vw"}}>
         <InputLabel
-          style={{'color': '#bbdefb'}}
+          style={{color: '#bbdefb'}}
           ref={ref => {
             this.InputLabelRef = ref
           }}
@@ -49,20 +48,20 @@ class DropDownFilter extends Component {
           {name}
         </InputLabel>
         <Select
-          style={{'color': '#bbdefb'}}
+          style={{color: '#bbdefb'}}
           value={this.getSelected()}
           onChange={this.handleChange("selected")}
           input={
             <OutlinedInput
-              style={{'color': '#bbdefb', 'border-color': '#bbdefb'}}
+              style={{color: '#bbdefb', borderColor: '#bbdefb'}}
               labelWidth={name === "Match" ? 40 : name === "Display" ? 50 : 55}
               label={name}
-              name={name}
               id='outlined-age-simple'
+              name={name}
             />
           }
         >
-          {options.map((e, i) => <MenuItem key={i} style={{'color': '#0d47a1'}} value={e}>{e}</MenuItem>)}
+          {options.map((e, i) => <MenuItem key={i} style={{color: '#0d47a1'}} value={e}>{e}</MenuItem>)}
         </Select>
       </FormControl>
     )

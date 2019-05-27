@@ -8,7 +8,6 @@ import {INIT_SEARCH,
   ONE_RESULT,
   defaultSearchParams,
   GET_DETAILS_OF_MANIFESTATION} from '../constants'
-import axios from 'axios'
 
 
 export const newQuery = url => async dispatch => {
@@ -46,7 +45,7 @@ export const newQuery = url => async dispatch => {
   )
 }
 
-export const getNext = (next) => async dispatch => {
+export const getNext = next => async dispatch => {
   dispatch({type: INIT_SEARCH})
 
   const response = await fetch(next)
@@ -64,16 +63,19 @@ export const getNext = (next) => async dispatch => {
 
 }
 
-export const getRelatedWorks = (workId) => dispatch => {
+export const getRelatedWorks = (workId) => async dispatch => {
   const url = `${API_URL}related.xquery?id=${workId}`
-  return axios.get(url).then(res => {
+  try {
+    const response = await fetch(url)
+    const data = await response.json()
     dispatch({
       type: GET_RELATED_WORKS,
-      payload: {'workId': workId, relations: res.data}
+      payload: {'workId': workId, relations: data}
     })
-  }).catch(err => {
+  }
+  catch (err) {
     console.log(err)
-  })
+  }
 }
 
 export const getDetailsOfManifestation = (manifestationId) => async dispatch => {

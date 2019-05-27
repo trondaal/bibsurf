@@ -32,28 +32,29 @@ class FilterCard extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if(this.props.url !== prevProps.url) {
-      const filterObj = JSON.parse(this.props.url.get(this.props.filterType))
+    const {url, title, filterType} = {...this.props}
+    if(url !== prevProps.url) {
+      const filterObj = JSON.parse(url.get(filterType))
+      let selectedValue = null
       if(filterObj){
-        const selectedValue = filterObj[this.props.title.split(' ').slice(0,2).join(' ')]
-        this.setState({
-          value: selectedValue ? selectedValue[0] : null
-        })
-      } else{
-        this.setState({value: null})
+        selectedValue = filterObj[title.split(' ').slice(0,2).join(' ')]
       }
+      this.setState({
+        value: selectedValue ? selectedValue[0] : null
+      })
     }
   }
 
-  toggleExpanded = () => {
-    this.setState({
-      expanded: !this.state.expanded
+  handleToggleExpanded = () => {
+    this.setState(prevState => {
+      return {expanded: !prevState.expanded}
     })
   }
 
-  handleChange = event => {
-    this.setState({value: event.target.value})
-    this.props.changeFilterParams(this.props.url, this.props.title, event.target.value, this.props.filterType)
+  handleChange = ({target: {value}}) => {
+    const {url, title, filterType} = this.props
+    this.setState({value})
+    this.props.changeFilterParams(url, title, value, filterType)
   }
 
 
@@ -78,35 +79,27 @@ class FilterCard extends Component {
     const {value, expanded} = this.state
     const optionLength = Object.entries(this.props.options).length
     return (
-      <ExpansionPanel style={{/* root: {
-        expanded: {
-          backgroundColor: "blue"
-        }
-      } */
-        //backgroundColor: "red"
-      }}
-      >
+      <ExpansionPanel>
         <ExpansionPanelSummary>
           <Typography>{translations[this.props.title]}</Typography>
         </ExpansionPanelSummary>
-        {}
         <ExpansionPanelDetails>
           <RadioGroup
-            aria-label='Gender'
-            name='gender1'
+            aria-label='Filter'
+            name='filter'
             value={value}
             onChange={this.handleChange}
           >
             {expanded ? this.renderControlLabels(optionLength) : this.renderControlLabels(6)}
-            {optionLength > 6 ?
-              <Button
-                variant={"contained"}
-                style={{backgroundColor: "#edeeef"}}
-                onClick={() => this.toggleExpanded()}
-              >
-                {expanded ? "Show less" : "Show more"}
-              </Button> : null}
           </RadioGroup>
+          {optionLength > 6 ?
+            <Button
+              variant='contained'
+              style={{backgroundColor: "#edeeef"}}
+              onClick={this.handleToggleExpanded}
+            >
+              {expanded ? "Show less" : "Show more"}
+            </Button> : null}
         </ExpansionPanelDetails>
       </ExpansionPanel>
     )

@@ -9,7 +9,6 @@ import {ResultContainer} from './style'
 
 
 class WorksList extends Component {
-
   componentDidMount() {
     this.props.newQuery(this.props.url)
   }
@@ -20,7 +19,6 @@ class WorksList extends Component {
     }
   }
 
-
   renderResults = () => {
     return this.props.results.slice(0,this.props.resultSize).map(result => {
       return <Result result={result} key={uuid()} type='work' />
@@ -28,14 +26,13 @@ class WorksList extends Component {
   }
 
   handleGetNext = () => {
-    if(!this.props.loading && this.props.results.length < this.props.resultSize){
-      this.props.getNext(this.props.next)
+    const {loading, results, resultSize, next} = this.props
+    if(!loading && results.length < resultSize){
+      this.props.getNext(next)
     }
   }
 
-
   render() {
-
     if(!this.props.results) {
       return (
         <ResultContainer />
@@ -52,7 +49,7 @@ class WorksList extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     results: state.result.results,
     next: state.result.next,
@@ -61,12 +58,11 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    newQuery: (url) => dispatch(newQuery(url)),
-    getNext: (next) => dispatch(getNext(next))
+    newQuery: url => dispatch(newQuery(url)),
+    getNext: next => dispatch(getNext(next))
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps )(WorksList)
