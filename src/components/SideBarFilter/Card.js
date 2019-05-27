@@ -83,7 +83,7 @@ class FilterCard extends Component {
         <ExpansionPanelSummary>
           <Typography>{translations[this.props.title]}</Typography>
         </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
+        <ExpansionPanelDetails style={{'flex-direction': 'column'}}>
           <RadioGroup
             aria-label='Filter'
             name='filter'

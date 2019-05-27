@@ -20,8 +20,9 @@ class WorksList extends Component {
   }
 
   renderResults = () => {
-    return this.props.results.slice(0,this.props.resultSize).map(result => {
-      return <Result result={result} key={uuid()} type='work' />
+    return this.props.results.slice(0,this.props.resultSize).map((result, i) => {
+      const toggled = i < 2
+      return <Result result={result} key={uuid()} type='work' toggled={toggled} />
     })
   }
 
